@@ -24,6 +24,7 @@ namespace pryVelezFunesEmpresa
 
         private void cmdConsultarCliente_Click(object sender, EventArgs e)
         {
+            cmdExportarCli.Enabled = true;
             clsClientes ConsultaClientes = new clsClientes();
             ConsultaClientes.ListarGrillaClientes(GrillaClientes);
         }

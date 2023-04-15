@@ -22,7 +22,7 @@ namespace pryVelezFunesEmpresa
         private Int32 varIDCliente;
         private string varNombreApellido;
         private string varDomicilio;
-        private Int32 varTelefono;
+        private double varTelefono;
         //Creo un booleano para verificar informacion
         public bool varBandera;
         public Int32 ClienteID
@@ -40,7 +40,7 @@ namespace pryVelezFunesEmpresa
             get { return varDomicilio; }
             set { varDomicilio = value; }
         }
-        public Int32 TelefonoCliente
+        public double TelefonoCliente
         {
             get { return varTelefono; }
             set { varTelefono = value; }
@@ -67,7 +67,7 @@ namespace pryVelezFunesEmpresa
                             ClienteID = Lector.GetInt32(0);
                             Nom_Apellido = Lector.GetString(1);
                             DomicilioCliente = Lector.GetString(2);
-                            TelefonoCliente =  Lector.GetInt32(3);
+                            TelefonoCliente =  Lector.GetDouble(3);
                             varBandera = false;
                         }
                     }
@@ -155,7 +155,7 @@ namespace pryVelezFunesEmpresa
                 {
                     while (Lector.Read())
                     {
-                        GrillaCliente.Rows.Add(Lector.GetInt32(0), Lector.GetString(1), Lector.GetString(2), Lector.GetInt32(3));
+                        GrillaCliente.Rows.Add(Lector.GetInt32(0), Lector.GetString(1), Lector.GetString(2), Lector.GetDouble(3));
                     }
                 }
                 Conexion.Close();
@@ -189,7 +189,8 @@ namespace pryVelezFunesEmpresa
                         ExportarDatos.Write(";");
                         ExportarDatos.Write(Lector.GetString(2));
                         ExportarDatos.Write(";");
-                        ExportarDatos.Write(Lector.GetInt32(3));
+                        ExportarDatos.Write(Lector.GetDouble(3));
+                        ExportarDatos.Write("\n");
                     }
                 }
                 Conexion.Close();

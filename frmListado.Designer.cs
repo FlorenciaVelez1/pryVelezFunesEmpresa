@@ -53,7 +53,7 @@
             this.GrillaClientes.ReadOnly = true;
             this.GrillaClientes.RowHeadersVisible = false;
             this.GrillaClientes.RowHeadersWidth = 51;
-            this.GrillaClientes.Size = new System.Drawing.Size(503, 363);
+            this.GrillaClientes.Size = new System.Drawing.Size(610, 363);
             this.GrillaClientes.TabIndex = 39;
             // 
             // columIDSocioCli
@@ -92,7 +92,7 @@
             // 
             this.cmdExportarCli.Enabled = false;
             this.cmdExportarCli.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExportarCli.Location = new System.Drawing.Point(196, 382);
+            this.cmdExportarCli.Location = new System.Drawing.Point(248, 382);
             this.cmdExportarCli.Name = "cmdExportarCli";
             this.cmdExportarCli.Size = new System.Drawing.Size(115, 33);
             this.cmdExportarCli.TabIndex = 42;
@@ -115,7 +115,7 @@
             // cmdConsultarCliente
             // 
             this.cmdConsultarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdConsultarCliente.Location = new System.Drawing.Point(390, 382);
+            this.cmdConsultarCliente.Location = new System.Drawing.Point(496, 382);
             this.cmdConsultarCliente.Margin = new System.Windows.Forms.Padding(4);
             this.cmdConsultarCliente.Name = "cmdConsultarCliente";
             this.cmdConsultarCliente.Size = new System.Drawing.Size(115, 33);
@@ -128,12 +128,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 438);
+            this.ClientSize = new System.Drawing.Size(621, 428);
             this.Controls.Add(this.cmdExportarCli);
             this.Controls.Add(this.cmdSalirCliente);
             this.Controls.Add(this.cmdConsultarCliente);
             this.Controls.Add(this.GrillaClientes);
             this.Name = "frmListado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listado";
             ((System.ComponentModel.ISupportInitialize)(this.GrillaClientes)).EndInit();
             this.ResumeLayout(false);
