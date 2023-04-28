@@ -43,14 +43,24 @@
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblDireccion = new System.Windows.Forms.Label();
             this.lblIDCliente = new System.Windows.Forms.Label();
+            this.cmdExportarCli = new System.Windows.Forms.Button();
+            this.cmdConsultarCliente = new System.Windows.Forms.Button();
+            this.GrillaClientes = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mrcListadoClientes = new System.Windows.Forms.GroupBox();
             this.mrcInformacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GrillaClientes)).BeginInit();
+            this.mrcListadoClientes.SuspendLayout();
             this.SuspendLayout();
             // 
             // mskIdCliente
             // 
             this.mskIdCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskIdCliente.Location = new System.Drawing.Point(148, 15);
-            this.mskIdCliente.Mask = "99999999";
+            this.mskIdCliente.Location = new System.Drawing.Point(148, 23);
+            this.mskIdCliente.Mask = "99999";
             this.mskIdCliente.Name = "mskIdCliente";
             this.mskIdCliente.Size = new System.Drawing.Size(171, 27);
             this.mskIdCliente.TabIndex = 98;
@@ -59,17 +69,18 @@
             // cmdSalir
             // 
             this.cmdSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSalir.Location = new System.Drawing.Point(12, 274);
+            this.cmdSalir.Location = new System.Drawing.Point(12, 282);
             this.cmdSalir.Name = "cmdSalir";
             this.cmdSalir.Size = new System.Drawing.Size(108, 39);
             this.cmdSalir.TabIndex = 104;
             this.cmdSalir.Text = "Salir";
             this.cmdSalir.UseVisualStyleBackColor = true;
+            this.cmdSalir.Click += new System.EventHandler(this.cmdSalir_Click);
             // 
             // cmdCancelar
             // 
             this.cmdCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdCancelar.Location = new System.Drawing.Point(194, 229);
+            this.cmdCancelar.Location = new System.Drawing.Point(194, 237);
             this.cmdCancelar.Name = "cmdCancelar";
             this.cmdCancelar.Size = new System.Drawing.Size(110, 39);
             this.cmdCancelar.TabIndex = 106;
@@ -80,7 +91,7 @@
             // cmdGuardar
             // 
             this.cmdGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdGuardar.Location = new System.Drawing.Point(366, 274);
+            this.cmdGuardar.Location = new System.Drawing.Point(366, 282);
             this.cmdGuardar.Name = "cmdGuardar";
             this.cmdGuardar.Size = new System.Drawing.Size(108, 39);
             this.cmdGuardar.TabIndex = 103;
@@ -91,7 +102,7 @@
             // cmdEliminar
             // 
             this.cmdEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdEliminar.Location = new System.Drawing.Point(130, 274);
+            this.cmdEliminar.Location = new System.Drawing.Point(130, 282);
             this.cmdEliminar.Name = "cmdEliminar";
             this.cmdEliminar.Size = new System.Drawing.Size(108, 39);
             this.cmdEliminar.TabIndex = 101;
@@ -102,7 +113,7 @@
             // cmdModificar
             // 
             this.cmdModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdModificar.Location = new System.Drawing.Point(248, 274);
+            this.cmdModificar.Location = new System.Drawing.Point(248, 282);
             this.cmdModificar.Name = "cmdModificar";
             this.cmdModificar.Size = new System.Drawing.Size(108, 39);
             this.cmdModificar.TabIndex = 102;
@@ -113,7 +124,7 @@
             // cmdBuscar
             // 
             this.cmdBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdBuscar.Location = new System.Drawing.Point(334, 8);
+            this.cmdBuscar.Location = new System.Drawing.Point(334, 16);
             this.cmdBuscar.Name = "cmdBuscar";
             this.cmdBuscar.Size = new System.Drawing.Size(132, 39);
             this.cmdBuscar.TabIndex = 99;
@@ -123,6 +134,7 @@
             // 
             // mrcInformacion
             // 
+            this.mrcInformacion.BackColor = System.Drawing.Color.LightGray;
             this.mrcInformacion.Controls.Add(this.txtDomicilio);
             this.mrcInformacion.Controls.Add(this.txtNombreApellido);
             this.mrcInformacion.Controls.Add(this.lblNombreYApellido);
@@ -130,7 +142,7 @@
             this.mrcInformacion.Controls.Add(this.lblTelefono);
             this.mrcInformacion.Controls.Add(this.lblDireccion);
             this.mrcInformacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mrcInformacion.Location = new System.Drawing.Point(12, 72);
+            this.mrcInformacion.Location = new System.Drawing.Point(12, 80);
             this.mrcInformacion.Name = "mrcInformacion";
             this.mrcInformacion.Size = new System.Drawing.Size(464, 181);
             this.mrcInformacion.TabIndex = 100;
@@ -210,19 +222,102 @@
             // 
             this.lblIDCliente.AutoSize = true;
             this.lblIDCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDCliente.Location = new System.Drawing.Point(18, 15);
+            this.lblIDCliente.Location = new System.Drawing.Point(18, 23);
             this.lblIDCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIDCliente.Name = "lblIDCliente";
             this.lblIDCliente.Size = new System.Drawing.Size(99, 20);
             this.lblIDCliente.TabIndex = 105;
             this.lblIDCliente.Text = "ID Cliente:";
             // 
+            // cmdExportarCli
+            // 
+            this.cmdExportarCli.Enabled = false;
+            this.cmdExportarCli.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdExportarCli.Location = new System.Drawing.Point(314, 266);
+            this.cmdExportarCli.Name = "cmdExportarCli";
+            this.cmdExportarCli.Size = new System.Drawing.Size(115, 33);
+            this.cmdExportarCli.TabIndex = 110;
+            this.cmdExportarCli.Text = "Exportar";
+            this.cmdExportarCli.UseVisualStyleBackColor = true;
+            this.cmdExportarCli.Click += new System.EventHandler(this.cmdExportarCli_Click);
+            // 
+            // cmdConsultarCliente
+            // 
+            this.cmdConsultarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdConsultarCliente.Location = new System.Drawing.Point(436, 266);
+            this.cmdConsultarCliente.Margin = new System.Windows.Forms.Padding(4);
+            this.cmdConsultarCliente.Name = "cmdConsultarCliente";
+            this.cmdConsultarCliente.Size = new System.Drawing.Size(115, 33);
+            this.cmdConsultarCliente.TabIndex = 108;
+            this.cmdConsultarCliente.Text = "Consultar";
+            this.cmdConsultarCliente.UseVisualStyleBackColor = true;
+            this.cmdConsultarCliente.Click += new System.EventHandler(this.cmdConsultarCliente_Click);
+            // 
+            // GrillaClientes
+            // 
+            this.GrillaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GrillaClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4});
+            this.GrillaClientes.Location = new System.Drawing.Point(18, 30);
+            this.GrillaClientes.Name = "GrillaClientes";
+            this.GrillaClientes.RowHeadersVisible = false;
+            this.GrillaClientes.RowHeadersWidth = 51;
+            this.GrillaClientes.RowTemplate.Height = 24;
+            this.GrillaClientes.Size = new System.Drawing.Size(533, 219);
+            this.GrillaClientes.TabIndex = 107;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Id Cliente";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Nombre y Apellido";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Domicilio";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 125;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Teléfono";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
+            // 
+            // mrcListadoClientes
+            // 
+            this.mrcListadoClientes.BackColor = System.Drawing.Color.LightGray;
+            this.mrcListadoClientes.Controls.Add(this.GrillaClientes);
+            this.mrcListadoClientes.Controls.Add(this.cmdConsultarCliente);
+            this.mrcListadoClientes.Controls.Add(this.cmdExportarCli);
+            this.mrcListadoClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mrcListadoClientes.Location = new System.Drawing.Point(482, 16);
+            this.mrcListadoClientes.Name = "mrcListadoClientes";
+            this.mrcListadoClientes.Size = new System.Drawing.Size(562, 305);
+            this.mrcListadoClientes.TabIndex = 111;
+            this.mrcListadoClientes.TabStop = false;
+            this.mrcListadoClientes.Text = "Listado de Clientes";
+            // 
             // frmBuscarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(498, 330);
+            this.ClientSize = new System.Drawing.Size(1046, 330);
+            this.Controls.Add(this.mrcListadoClientes);
             this.Controls.Add(this.mskIdCliente);
             this.Controls.Add(this.cmdSalir);
             this.Controls.Add(this.cmdCancelar);
@@ -238,6 +333,8 @@
             this.Load += new System.EventHandler(this.frmBuscarClientes_Load);
             this.mrcInformacion.ResumeLayout(false);
             this.mrcInformacion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GrillaClientes)).EndInit();
+            this.mrcListadoClientes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,5 +357,13 @@
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.Label lblIDCliente;
+        private System.Windows.Forms.Button cmdExportarCli;
+        private System.Windows.Forms.Button cmdConsultarCliente;
+        private System.Windows.Forms.DataGridView GrillaClientes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.GroupBox mrcListadoClientes;
     }
 }

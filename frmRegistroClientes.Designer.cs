@@ -76,9 +76,9 @@
             // 
             this.mskIDCliente.Location = new System.Drawing.Point(186, 31);
             this.mskIDCliente.Margin = new System.Windows.Forms.Padding(4);
-            this.mskIDCliente.Mask = "00000000";
+            this.mskIDCliente.Mask = "99999";
             this.mskIDCliente.Name = "mskIDCliente";
-            this.mskIDCliente.Size = new System.Drawing.Size(174, 27);
+            this.mskIDCliente.Size = new System.Drawing.Size(132, 27);
             this.mskIDCliente.TabIndex = 1;
             this.mskIDCliente.ValidatingType = typeof(int);
             this.mskIDCliente.TextChanged += new System.EventHandler(this.mskIDCliente_TextChanged);

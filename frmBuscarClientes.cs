@@ -24,6 +24,7 @@ namespace pryVelezFunesEmpresa
             cmdGuardar.Enabled = false;
             cmdBuscar.Enabled = false;
             cmdCancelar.Visible = false;
+            NoEditarTXT();
         }
         private void NoEditarTXT()
         {
@@ -92,14 +93,13 @@ namespace pryVelezFunesEmpresa
             cmdBuscar.Enabled = false;
             cmdGuardar.Enabled = true;
             cmdCancelar.Visible = true;
-            //Desabilito mskIdSocio
+            //Desabilito mskIdCliente
             mskIdCliente.ReadOnly = true;
             //Habilito los txt, msk y lst
             txtNombreApellido.ReadOnly = false;
             txtDomicilio.ReadOnly = false;
             mskTelefono.ReadOnly = false;
         }
-
         private void cmdGuardar_Click(object sender, EventArgs e)
         {
             int IDCLIENTE = Convert.ToInt32(mskIdCliente.Text);
@@ -152,6 +152,21 @@ namespace pryVelezFunesEmpresa
                 e.Handled = true;
                 MessageBox.Show("Solo se aceptan letras");
             }
+        }
+        private void cmdSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void cmdConsultarCliente_Click(object sender, EventArgs e)
+        {
+            cmdExportarCli.Enabled = true;
+            clsClientes ConsultaCli = new clsClientes();
+            ConsultaCli.ListarGrillaClientes(GrillaClientes);
+        }
+        private void cmdExportarCli_Click(object sender, EventArgs e)
+        {
+            clsClientes ExportarClientes = new clsClientes();
+            ExportarClientes.ExportarClientes();
         }
     }
 }

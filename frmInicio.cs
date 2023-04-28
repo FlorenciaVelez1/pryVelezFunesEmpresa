@@ -21,17 +21,20 @@ namespace pryVelezFunesEmpresa
             frmRegistroClientes Registrar = new frmRegistroClientes();
             Registrar.ShowDialog();
         }
-
         private void tsmBuscarCliente_Click(object sender, EventArgs e)
         {
             frmBuscarClientes Buscar = new frmBuscarClientes();
             Buscar.ShowDialog();
         }
 
-        private void tsmClientes_Click(object sender, EventArgs e)
+        private void buscarVentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmListado ListadoClientes = new frmListado();
-            ListadoClientes.ShowDialog();
+
+        }
+        private void registarProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRegistarProducto RegistrarProducto = new frmRegistarProducto();
+            RegistrarProducto.ShowDialog();
         }
     }
 }
