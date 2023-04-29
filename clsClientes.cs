@@ -178,7 +178,7 @@ namespace pryVelezFunesEmpresa
                 //Creo el archivo para exportar los datos
                 StreamWriter ExportarDatos = new StreamWriter("ExportarClientes.csv", false, Encoding.UTF8);
                 ExportarDatos.WriteLine("Listado de Clientes");
-                ExportarDatos.WriteLine("ID Socio;Nombre y Apellido;Domicilio;Telefono");
+                ExportarDatos.WriteLine("ID Cliente;Nombre y Apellido;Domicilio;Telefono");
                 if (Lector.HasRows)
                 {
                     while (Lector.Read())

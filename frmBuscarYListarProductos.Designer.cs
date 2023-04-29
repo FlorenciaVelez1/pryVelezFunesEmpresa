@@ -44,7 +44,6 @@
             this.mrcListadoProductos = new System.Windows.Forms.GroupBox();
             this.GrillaProductos = new System.Windows.Forms.DataGridView();
             this.cmdConsultar = new System.Windows.Forms.Button();
-            this.cmdExportar = new System.Windows.Forms.Button();
             this.cmdSalir = new System.Windows.Forms.Button();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdGuardar = new System.Windows.Forms.Button();
@@ -89,6 +88,7 @@
             this.mskCostoMayorista.Name = "mskCostoMayorista";
             this.mskCostoMayorista.Size = new System.Drawing.Size(100, 27);
             this.mskCostoMayorista.TabIndex = 7;
+            this.mskCostoMayorista.TextChanged += new System.EventHandler(this.mskCostoMayorista_TextChanged);
             // 
             // mskCostoMinorista
             // 
@@ -97,6 +97,7 @@
             this.mskCostoMinorista.Name = "mskCostoMinorista";
             this.mskCostoMinorista.Size = new System.Drawing.Size(100, 27);
             this.mskCostoMinorista.TabIndex = 6;
+            this.mskCostoMinorista.TextChanged += new System.EventHandler(this.mskCostoMinorista_TextChanged);
             // 
             // cbTipoProducto
             // 
@@ -106,6 +107,7 @@
             this.cbTipoProducto.Name = "cbTipoProducto";
             this.cbTipoProducto.Size = new System.Drawing.Size(218, 28);
             this.cbTipoProducto.TabIndex = 4;
+            this.cbTipoProducto.SelectedIndexChanged += new System.EventHandler(this.cbTipoProducto_SelectedIndexChanged);
             // 
             // txtNombreProducto
             // 
@@ -113,6 +115,7 @@
             this.txtNombreProducto.Name = "txtNombreProducto";
             this.txtNombreProducto.Size = new System.Drawing.Size(220, 27);
             this.txtNombreProducto.TabIndex = 3;
+            this.txtNombreProducto.TextChanged += new System.EventHandler(this.txtNombreProducto_TextChanged);
             // 
             // txtDescripcion
             // 
@@ -121,6 +124,7 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(220, 110);
             this.txtDescripcion.TabIndex = 5;
+            this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
             // mskIdProducto
             // 
@@ -196,7 +200,6 @@
             this.mrcListadoProductos.BackColor = System.Drawing.Color.LightGray;
             this.mrcListadoProductos.Controls.Add(this.GrillaProductos);
             this.mrcListadoProductos.Controls.Add(this.cmdConsultar);
-            this.mrcListadoProductos.Controls.Add(this.cmdExportar);
             this.mrcListadoProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mrcListadoProductos.Location = new System.Drawing.Point(469, 9);
             this.mrcListadoProductos.Name = "mrcListadoProductos";
@@ -234,17 +237,6 @@
             this.cmdConsultar.Text = "Consultar";
             this.cmdConsultar.UseVisualStyleBackColor = true;
             this.cmdConsultar.Click += new System.EventHandler(this.cmdConsultar_Click);
-            // 
-            // cmdExportar
-            // 
-            this.cmdExportar.Enabled = false;
-            this.cmdExportar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdExportar.Location = new System.Drawing.Point(454, 452);
-            this.cmdExportar.Name = "cmdExportar";
-            this.cmdExportar.Size = new System.Drawing.Size(115, 33);
-            this.cmdExportar.TabIndex = 110;
-            this.cmdExportar.Text = "Exportar";
-            this.cmdExportar.UseVisualStyleBackColor = true;
             // 
             // cmdSalir
             // 
@@ -400,7 +392,6 @@
         private System.Windows.Forms.GroupBox mrcListadoProductos;
         private System.Windows.Forms.DataGridView GrillaProductos;
         private System.Windows.Forms.Button cmdConsultar;
-        private System.Windows.Forms.Button cmdExportar;
         private System.Windows.Forms.Button cmdSalir;
         private System.Windows.Forms.Button cmdCancelar;
         private System.Windows.Forms.Button cmdGuardar;

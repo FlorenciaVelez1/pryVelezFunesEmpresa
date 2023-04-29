@@ -105,7 +105,6 @@ namespace pryVelezFunesEmpresa
         }
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
-            cmdExportar.Enabled = true;
             clsProductos ConsultarProductos = new clsProductos();
             ConsultarProductos.ListarGrillaProductos(GrillaProductos);
         }
@@ -145,6 +144,51 @@ namespace pryVelezFunesEmpresa
             cmdGuardar.Enabled = false;
             cmdCancelar.Visible = false;
             mskIdProducto.ReadOnly = false;
+        }
+        public void Chequeo()
+        {
+            if (txtNombreProducto.Text != "" & txtDescripcion.Text != "" & mskCostoMayorista.Text != "" & mskCostoMinorista.Text != "" & cbTipoProducto.SelectedIndex != -1)
+            {
+                cmdGuardar.Enabled = true;
+            }
+            else
+            {
+                cmdGuardar.Enabled=false;
+            }
+        }
+        private void txtNombreProducto_TextChanged(object sender, EventArgs e)
+        {
+            Chequeo();
+        }
+        private void txtDescripcion_TextChanged(object sender, EventArgs e)
+        {
+            Chequeo();
+        }
+        private void cbTipoProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Chequeo();
+        }
+        private void mskCostoMinorista_TextChanged(object sender, EventArgs e)
+        {
+            Chequeo();
+            if (mskCostoMinorista.Text != "" & mskCostoMayorista.Text != "")
+            {
+                if (Convert.ToDecimal(mskCostoMayorista.Text) > Convert.ToDecimal(mskCostoMinorista.Text))
+                {
+                    MessageBox.Show("El costo mayorista no puede ser mayor al costo minorista, verifique los datos nuevamente.");
+                }
+            }
+        }
+        private void mskCostoMayorista_TextChanged(object sender, EventArgs e)
+        {
+            Chequeo();
+            if (mskCostoMinorista.Text != "" & mskCostoMayorista.Text != "")
+            {
+                if (Convert.ToDecimal(mskCostoMayorista.Text) > Convert.ToDecimal(mskCostoMinorista.Text))
+                {
+                    MessageBox.Show("El costo mayorista no puede ser mayor al costo minorista, verifique los datos nuevamente.");
+                }
+            }
         }
     }
 }
