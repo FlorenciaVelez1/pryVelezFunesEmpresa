@@ -26,7 +26,6 @@ namespace pryVelezFunesEmpresa
             frmBuscarClientes Buscar = new frmBuscarClientes();
             Buscar.ShowDialog();
         }
-
         private void buscarVentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -35,6 +34,11 @@ namespace pryVelezFunesEmpresa
         {
             frmRegistarProducto RegistrarProducto = new frmRegistarProducto();
             RegistrarProducto.ShowDialog();
+        }
+        private void buscarProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmBuscarYListarProductos BuscarProducto = new frmBuscarYListarProductos();
+            BuscarProducto.ShowDialog();
         }
     }
 }

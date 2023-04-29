@@ -47,11 +47,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsClientes.cs" />
+    <Compile Include="clsProductos.cs" />
     <Compile Include="frmBuscarClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmBuscarClientes.Designer.cs">
       <DependentUpon>frmBuscarClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuscarYListarProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBuscarYListarProductos.Designer.cs">
+      <DependentUpon>frmBuscarYListarProductos.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInicio.cs">
       <SubType>Form</SubType>
@@ -75,6 +82,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmBuscarClientes.resx">
       <DependentUpon>frmBuscarClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBuscarYListarProductos.resx">
+      <DependentUpon>frmBuscarYListarProductos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInicio.resx">
       <DependentUpon>frmInicio.cs</DependentUpon>
