@@ -117,12 +117,13 @@
             this.registrarVentaToolStripMenuItem.Name = "registrarVentaToolStripMenuItem";
             this.registrarVentaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.registrarVentaToolStripMenuItem.Text = "Registrar Venta";
+            this.registrarVentaToolStripMenuItem.Click += new System.EventHandler(this.registrarVentaToolStripMenuItem_Click);
             // 
             // buscarVentaToolStripMenuItem
             // 
             this.buscarVentaToolStripMenuItem.Name = "buscarVentaToolStripMenuItem";
             this.buscarVentaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.buscarVentaToolStripMenuItem.Text = "Buscar Venta";
+            this.buscarVentaToolStripMenuItem.Text = "Buscar/Listar Venta";
             this.buscarVentaToolStripMenuItem.Click += new System.EventHandler(this.buscarVentaToolStripMenuItem_Click);
             // 
             // frmInicio

@@ -34,15 +34,21 @@
             this.cbTipoProducto = new System.Windows.Forms.ComboBox();
             this.txtNombreProducto = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.mskIdProducto = new System.Windows.Forms.MaskedTextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.lblCostoMayorista = new System.Windows.Forms.Label();
-            this.lblIdProducto = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblTipoProducto = new System.Windows.Forms.Label();
             this.lblCostoMinorista = new System.Windows.Forms.Label();
+            this.mskIdProducto = new System.Windows.Forms.MaskedTextBox();
+            this.lblIdProducto = new System.Windows.Forms.Label();
             this.mrcListadoProductos = new System.Windows.Forms.GroupBox();
             this.GrillaProductos = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmdConsultar = new System.Windows.Forms.Button();
             this.cmdSalir = new System.Windows.Forms.Button();
             this.cmdCancelar = new System.Windows.Forms.Button();
@@ -50,12 +56,6 @@
             this.cmdEliminar = new System.Windows.Forms.Button();
             this.cmdModificar = new System.Windows.Forms.Button();
             this.cmdBuscar = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mrcInformacionProducto.SuspendLayout();
             this.mrcListadoProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaProductos)).BeginInit();
@@ -126,15 +126,6 @@
             this.txtDescripcion.TabIndex = 5;
             this.txtDescripcion.TextChanged += new System.EventHandler(this.txtDescripcion_TextChanged);
             // 
-            // mskIdProducto
-            // 
-            this.mskIdProducto.Location = new System.Drawing.Point(207, 18);
-            this.mskIdProducto.Mask = "0000";
-            this.mskIdProducto.Name = "mskIdProducto";
-            this.mskIdProducto.Size = new System.Drawing.Size(81, 22);
-            this.mskIdProducto.TabIndex = 1;
-            this.mskIdProducto.TextChanged += new System.EventHandler(this.mskIdProducto_TextChanged);
-            // 
             // lblDescripcion
             // 
             this.lblDescripcion.AutoSize = true;
@@ -154,16 +145,6 @@
             this.lblCostoMayorista.Size = new System.Drawing.Size(131, 20);
             this.lblCostoMayorista.TabIndex = 5;
             this.lblCostoMayorista.Text = "Costo Mayorista";
-            // 
-            // lblIdProducto
-            // 
-            this.lblIdProducto.AutoSize = true;
-            this.lblIdProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdProducto.Location = new System.Drawing.Point(39, 18);
-            this.lblIdProducto.Name = "lblIdProducto";
-            this.lblIdProducto.Size = new System.Drawing.Size(140, 20);
-            this.lblIdProducto.TabIndex = 1;
-            this.lblIdProducto.Text = "ID del Producto";
             // 
             // lblNombre
             // 
@@ -195,6 +176,25 @@
             this.lblCostoMinorista.TabIndex = 4;
             this.lblCostoMinorista.Text = "Costo Minorista";
             // 
+            // mskIdProducto
+            // 
+            this.mskIdProducto.Location = new System.Drawing.Point(207, 18);
+            this.mskIdProducto.Mask = "0000";
+            this.mskIdProducto.Name = "mskIdProducto";
+            this.mskIdProducto.Size = new System.Drawing.Size(81, 22);
+            this.mskIdProducto.TabIndex = 1;
+            this.mskIdProducto.TextChanged += new System.EventHandler(this.mskIdProducto_TextChanged);
+            // 
+            // lblIdProducto
+            // 
+            this.lblIdProducto.AutoSize = true;
+            this.lblIdProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIdProducto.Location = new System.Drawing.Point(39, 18);
+            this.lblIdProducto.Name = "lblIdProducto";
+            this.lblIdProducto.Size = new System.Drawing.Size(140, 20);
+            this.lblIdProducto.TabIndex = 1;
+            this.lblIdProducto.Text = "ID del Producto";
+            // 
             // mrcListadoProductos
             // 
             this.mrcListadoProductos.BackColor = System.Drawing.Color.LightGray;
@@ -225,6 +225,48 @@
             this.GrillaProductos.RowTemplate.Height = 24;
             this.GrillaProductos.Size = new System.Drawing.Size(673, 401);
             this.GrillaProductos.TabIndex = 107;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Id Producto";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Nombre del Producto";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Tipo de Producto";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 125;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Descripción";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 125;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Costo Minorista";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Costo Mayorista";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 125;
             // 
             // cmdConsultar
             // 
@@ -304,53 +346,11 @@
             this.cmdBuscar.UseVisualStyleBackColor = true;
             this.cmdBuscar.Click += new System.EventHandler(this.cmdBuscar_Click);
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Id Producto";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Nombre del Producto";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Tipo de Producto";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 125;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Descripción";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Costo Minorista";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 125;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Costo Mayorista";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 125;
-            // 
             // frmBuscarYListarProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 514);
+            this.ClientSize = new System.Drawing.Size(1178, 510);
             this.Controls.Add(this.cmdSalir);
             this.Controls.Add(this.cmdCancelar);
             this.Controls.Add(this.cmdGuardar);

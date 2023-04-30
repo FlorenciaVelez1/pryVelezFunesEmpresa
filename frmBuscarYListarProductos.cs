@@ -64,7 +64,7 @@ namespace pryVelezFunesEmpresa
             BuscarProducto.Buscar(IDPRODUCTO);
             if (BuscarProducto.IdProducto != IDPRODUCTO)
             {
-                MessageBox.Show("El ID de Socio ingresado no se encuentra en la base de datos.");
+                MessageBox.Show("El ID del Producto ingresado no se encuentra en la base de datos.");
             }
             else
             {

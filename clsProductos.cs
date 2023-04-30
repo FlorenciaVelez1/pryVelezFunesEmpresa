@@ -178,11 +178,9 @@ namespace pryVelezFunesEmpresa
             }
             catch (Exception)
             {
-                MessageBox.Show("No se ha podido eliminar la informacion del cliente correctamente");
+                MessageBox.Show("No se ha podido eliminar la informacion del producto correctamente");
             }
         }
-
-        
         public void Modificar(Int32 IDPRODUCTO)
         {
             try
