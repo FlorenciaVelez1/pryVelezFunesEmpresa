@@ -53,7 +53,7 @@
             this.cmdSalir.Location = new System.Drawing.Point(12, 456);
             this.cmdSalir.Name = "cmdSalir";
             this.cmdSalir.Size = new System.Drawing.Size(123, 39);
-            this.cmdSalir.TabIndex = 7;
+            this.cmdSalir.TabIndex = 9;
             this.cmdSalir.Text = "Salir";
             this.cmdSalir.UseVisualStyleBackColor = true;
             this.cmdSalir.Click += new System.EventHandler(this.cmdSalir_Click);
@@ -64,7 +64,7 @@
             this.cmdAgregar.Location = new System.Drawing.Point(361, 457);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(123, 39);
-            this.cmdAgregar.TabIndex = 8;
+            this.cmdAgregar.TabIndex = 7;
             this.cmdAgregar.Text = "Agregar";
             this.cmdAgregar.UseVisualStyleBackColor = true;
             this.cmdAgregar.Click += new System.EventHandler(this.cmdAgregar_Click);
@@ -75,7 +75,7 @@
             this.cmdLimpiar.Location = new System.Drawing.Point(189, 457);
             this.cmdLimpiar.Name = "cmdLimpiar";
             this.cmdLimpiar.Size = new System.Drawing.Size(123, 39);
-            this.cmdLimpiar.TabIndex = 9;
+            this.cmdLimpiar.TabIndex = 8;
             this.cmdLimpiar.Text = "Limpiar";
             this.cmdLimpiar.UseVisualStyleBackColor = true;
             this.cmdLimpiar.Click += new System.EventHandler(this.cmdLimpiar_Click);
@@ -98,7 +98,7 @@
             this.mrcInformacioProducto.Location = new System.Drawing.Point(13, 2);
             this.mrcInformacioProducto.Name = "mrcInformacioProducto";
             this.mrcInformacioProducto.Size = new System.Drawing.Size(472, 449);
-            this.mrcInformacioProducto.TabIndex = 11;
+            this.mrcInformacioProducto.TabIndex = 0;
             this.mrcInformacioProducto.TabStop = false;
             this.mrcInformacioProducto.Text = "Información del Producto";
             // 
@@ -149,6 +149,7 @@
             this.mskIdProducto.Name = "mskIdProducto";
             this.mskIdProducto.Size = new System.Drawing.Size(123, 27);
             this.mskIdProducto.TabIndex = 1;
+            this.mskIdProducto.Leave += new System.EventHandler(this.mskIdProducto_Leave);
             // 
             // lblDescripcion
             // 

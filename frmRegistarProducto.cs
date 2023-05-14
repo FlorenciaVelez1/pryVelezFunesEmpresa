@@ -23,7 +23,7 @@ namespace pryVelezFunesEmpresa
         private void frmRegistarProducto_Load(object sender, EventArgs e)
         {
             clsProductos CompletarCb = new clsProductos();
-            CompletarCb.LlenarCb(cbTipoProducto);
+            CompletarCb.LlenarCbTipoProducto(cbTipoProducto);
             //Cancelo el cmdRegistrar
             cmdAgregar.Enabled = false;
             cbTipoProducto.SelectedIndex = -1;
@@ -101,6 +101,19 @@ namespace pryVelezFunesEmpresa
                 if (Convert.ToDecimal( mskCostoMayorista.Text) > Convert.ToDecimal( mskCostoMinorista.Text))
                 {
                 MessageBox.Show("El costo mayorista no puede ser mayor al costo minorista, verifique los datos nuevamente.");
+                }
+            }
+        }
+        private void mskIdProducto_Leave(object sender, EventArgs e)
+        {
+            if (mskIdProducto.Text != "")
+            {
+                clsProductos RegistroProducto = new clsProductos();
+                RegistroProducto.Buscar(Convert.ToInt32(mskIdProducto.Text));
+                if (RegistroProducto.varBandera == false)
+                {
+                    MessageBox.Show("El Id del Producto ya se encuentra registrado, verifique los datos ingresados.");
+                    mskIdProducto.Focus();
                 }
             }
         }

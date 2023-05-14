@@ -28,9 +28,24 @@ namespace pryVelezFunesEmpresa
             nudCantidad.Value = 1;
             cbFormaPago.SelectedIndex = -1;
             dtpFecha.Value = DateTime.Now;
+            //Lleno los cb con la informacion de la base
+            clsProductos LlenarCb = new clsProductos();
+            LlenarCb.LlenarCbNomProductos(cbProducto);
+            cbProducto.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbProducto.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbProducto.SelectedIndex = -1;
+            mskIdProducto.Text = "";
+            clsClientes LlenarCBClientes = new clsClientes();
+            LlenarCBClientes.LlenarNomClientes(cbNomClientes);
+            cbNomClientes.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbNomClientes.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbNomClientes.SelectedIndex = -1;
+            mskIdCliente.Text = "";
         }
         public void Limpieza()
         {
+            cbProducto.SelectedIndex = -1;
+            cbNomClientes.SelectedIndex = -1;
             mskIdCliente.Text = "";
             mskIdProducto.Text = "";
             mskVendedor.Text = "";
@@ -79,14 +94,6 @@ namespace pryVelezFunesEmpresa
         {
             Chequeo();
         }
-        private void mskIdProducto_TextChanged(object sender, EventArgs e)
-        {
-            Chequeo();
-        }
-        private void mskIdCliente_TextChanged(object sender, EventArgs e)
-        {
-            Chequeo();
-        }
         private void cbFormaPago_SelectedIndexChanged(object sender, EventArgs e)
         {
             Chequeo();
@@ -102,28 +109,22 @@ namespace pryVelezFunesEmpresa
               }
             }
         }
-        private void mskIdProducto_Leave(object sender, EventArgs e)
+        private void cbNomClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mskIdProducto.Text != "")
+            clsClientes BuscarIDCliente = new clsClientes();
+            BuscarIDCliente.BuscarCliente(cbNomClientes.Text);
+            if (BuscarIDCliente.varBandera == false)
             {
-                objProductos.Buscar(Convert.ToInt32(mskIdProducto.Text));
-                if (objProductos.varBandera == true)
-                {
-                    MessageBox.Show("El Id del Producto no se encuentra registrado, verifique los datos ingresados.");
-                    mskIdProducto.Focus();
-                }
+                mskIdCliente.Text = Convert.ToString(BuscarIDCliente.ClienteID);
             }
         }
-        private void mskIdCliente_Leave(object sender, EventArgs e)
+        private void cbProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mskIdCliente.Text != "")
+            clsProductos BuscarIDProducto = new clsProductos();
+            BuscarIDProducto.BuscarProducto(cbProducto.Text);
+            if (BuscarIDProducto.varBandera == false)
             {
-                objClientes.Buscar(Convert.ToInt32(mskIdCliente.Text));
-                if (objClientes.varBandera == true)
-                {
-                    MessageBox.Show("El Id del Cliente no se encuentra registrado, verifique los datos ingresados.");
-                    mskIdCliente.Focus();
-                }
+                mskIdProducto.Text = Convert.ToString(BuscarIDProducto.IdProducto);
             }
         }
     }

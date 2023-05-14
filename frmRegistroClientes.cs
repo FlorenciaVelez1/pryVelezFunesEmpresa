@@ -76,7 +76,6 @@ namespace pryVelezFunesEmpresa
             }
             else
             {
-                MessageBox.Show("El ID Socio ya se encuentra registrado, verifique los datos.");
             }
         }
         private void mskIDCliente_TextChanged(object sender, EventArgs e)
@@ -101,6 +100,20 @@ namespace pryVelezFunesEmpresa
             {
                 e.Handled = true;
                 MessageBox.Show("Solo se aceptan letras");
+            }
+        }
+
+        private void mskIDCliente_Leave(object sender, EventArgs e)
+        {
+            if (mskIDCliente.Text != "")
+            {
+                clsClientes RegistroCliente = new clsClientes();
+                RegistroCliente.Buscar(Convert.ToInt32(mskIDCliente.Text));
+                if (RegistroCliente.varBandera == false)
+                {
+                    MessageBox.Show("El Id del Cliente ya se encuentra registrado, verifique los datos ingresados.");
+                    mskIDCliente.Focus();
+                }
             }
         }
     }

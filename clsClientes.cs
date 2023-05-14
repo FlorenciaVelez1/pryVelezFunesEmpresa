@@ -79,12 +79,43 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("Hubo un error al buscar el ID Cliente.");
             }
         }
+        public void BuscarCliente(string NomCliente)
+        {
+            varBandera = true;
+            try
+            {
+                Conexion.ConnectionString = Ruta;
+                Conexion.Open();
+                Comando.Connection = Conexion;
+                Comando.CommandType = CommandType.TableDirect;
+                Comando.CommandText = Tabla;
+                //Recibe el contenido de la tabla
+                OleDbDataReader Lector = Comando.ExecuteReader();
+                //Si hay filas que leer entra en el "si"
+                if (Lector.HasRows)
+                {
+                    while (Lector.Read())
+                    {
+                        if (Lector.GetString(1) == NomCliente)
+                        {
+                            ClienteID = Lector.GetInt32(0);
+                            varBandera = false;
+                        }
+                    }
+                }
+                Conexion.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Hubo un error al buscar el ID Cliente.");
+            }
+        }
         public void Agregar()
         {
             try
             {
                 //Instruccion sql, creo variable con la intruccion concatenada y utilizo la variable luego
-                string Sql = "INSERT INTO Clientes ([IdCliente],[Nombre y Apellido], [Domicilio], [Telefono])" +
+                string Sql = "INSERT INTO Clientes ([Id Cliente],[Nombre y Apellido], [Domicilio], [Telefono])" +
                     "VALUES ('" + ClienteID + "','" + Nom_Apellido + "','" + DomicilioCliente + "','" + TelefonoCliente + "')";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
@@ -201,6 +232,23 @@ namespace pryVelezFunesEmpresa
             {
                 MessageBox.Show("Tus datos no han podido ser exportados.");
             }
+        }
+        public void LlenarNomClientes(ComboBox cbNomClientes)
+        {
+            Conexion.ConnectionString = Ruta;
+            Conexion.Open();
+            Comando.Connection = Conexion;
+            Comando.CommandType = CommandType.TableDirect;
+            Comando.CommandText = "Clientes";
+            //Adaptador se conecta con la base y trae los datos y se suben los datos a una tabla "virtual"(dataset)
+            Adaptador = new OleDbDataAdapter(Comando);
+            //Tabla virtual
+            DataSet DataConsulta = new DataSet();
+            Adaptador.Fill(DataConsulta);
+            cbNomClientes.DataSource = DataConsulta.Tables[0];
+            //Los datos que queremos que se vean en la lst
+            cbNomClientes.DisplayMember = "Nombre y Apellido";
+            Conexion.Close();
         }
     }
 

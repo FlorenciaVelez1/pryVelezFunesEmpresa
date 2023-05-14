@@ -27,7 +27,7 @@ namespace pryVelezFunesEmpresa
         private string varFormaPago;
         private string varFechaVenta;
         private decimal varTotalPago;
-        private Int32 varIdVenta;
+        private string varnomVendedor;
         //Creo un booleano para verificar informacion
         public bool varBandera;
         public Int32 IdProducto
@@ -65,10 +65,10 @@ namespace pryVelezFunesEmpresa
             get { return varTotalPago; }
             set { varTotalPago = value; }
         }
-        public Int32 IdVenta
+        public string nomVendedor
         {
-            get { return varIdVenta; }
-            set { varIdVenta = value; }
+            get { return varnomVendedor; }
+            set { varnomVendedor = value; }
         }
         public void CalcularTotalVenta( Int32 IdProducto)
         {
@@ -104,6 +104,23 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("No se han podido registrar los datos.");
             }
         }
+        public void LlenarCbNomVendedores(ComboBox cbVendedores)
+        {
+            Conexion.ConnectionString = Ruta;
+            Conexion.Open();
+            Comando.Connection = Conexion;
+            Comando.CommandType = CommandType.TableDirect;
+            Comando.CommandText = "Empleados";
+            //Adaptador se conecta con la base y trae los datos y se suben los datos a una tabla "virtual"(dataset)
+            Adaptador = new OleDbDataAdapter(Comando);
+            //Tabla virtual
+            DataSet DataConsulta = new DataSet();
+            Adaptador.Fill(DataConsulta);
+            cbVendedores.DataSource = DataConsulta.Tables[0];
+            //Los datos que queremos que se vean en la lst
+            cbVendedores.DisplayMember = "Nombre y Apellido";
+            Conexion.Close();
+        }
         public void BuscarVendedor(Int32 IdVendedor)
         {
             varBandera = true;
@@ -123,6 +140,7 @@ namespace pryVelezFunesEmpresa
                     {
                         if (Lector.GetInt32(0) == IdVendedor)
                         {
+                            nomVendedor = Lector.GetString(1);
                             varBandera = false;
                         }
                     }
@@ -134,83 +152,10 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("Hubo un error al buscar el ID del Vendedor.");
             }
         }
-        public void BuscarVenta(Int32 IDVenta)
-        {
-            varBandera = true;
-            try
-            {
-                Conexion.ConnectionString = Ruta;
-                Conexion.Open();
-                Comando.Connection = Conexion;
-                Comando.CommandType = CommandType.TableDirect;
-                Comando.CommandText = "Ventas";
-                //Recibe el contenido de la tabla
-                OleDbDataReader Lector = Comando.ExecuteReader();
-                //Si hay filas que leer entra en el "si"
-                if (Lector.HasRows)
-                {
-                    while (Lector.Read())
-                    {
-                        if (Lector.GetInt32(0) == IDVenta)
-                        {
-                            IdVenta = Lector.GetInt32(0);
-                            IdCliente = Lector.GetInt32(1);
-                            IdProducto = Lector.GetInt32(2);
-                            Cantidad = Lector.GetInt32(3);
-                            FormaPago = Lector.GetString(4);
-                            Fecha = Lector.GetDateTime(5).ToString("dd/MM/yyyy");
-                            TotalPago = Lector.GetInt32(6);
-                            IdVendedor = Lector.GetInt32(7);
-                            varBandera = false;
-                        }
-                    }
-                }
-                Conexion.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Hubo un error al buscar el ID del Vendedor.");
-            }
-        }
-        public void Eliminar(Int32 IDVENTA)
-        {
-            try
-            {
-                string Sql = "DELETE FROM Ventas WHERE (" + IDVENTA + "= [Id Venta])";
-                Conexion.ConnectionString = Ruta;
-                Conexion.Open();
-                Comando.Connection = Conexion;
-                Comando.CommandType = CommandType.Text;
-                Comando.CommandText = Sql;
-                Comando.ExecuteNonQuery();
-                Conexion.Close();
-                MessageBox.Show("Datos borrados con exito");
 
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se ha podido eliminar la informacion de la venta correctamente");
-            }
-        }
-        public void Modificar(Int32 IDVENTA)
+        public void ListarGrilla(DataGridView GrillaVentas, string NOMBREVENDEDOR, string TIPOPRODUCTO)
         {
-            try
-            {
-                string Sql = "UPDATE Ventas SET [Id Cliente]= " + IdCliente + ", [Id Producto]= " + IdProducto + ", [Cantidad]= " +
-                    Cantidad + ", [Forma de Pago]= '" + FormaPago + "', [Fecha Venta]= "+ Fecha + ", [Total Pago]= " + TotalPago + ", [Vendedor]= " + IdVendedor + " WHERE [Id Venta] = " + IDVENTA + "";
-                Conexion.ConnectionString = Ruta;
-                Conexion.Open();
-                Comando.Connection = Conexion;
-                Comando.CommandType = CommandType.Text;
-                Comando.CommandText = Sql;
-                Comando.ExecuteNonQuery();
-                Conexion.Close();
-                MessageBox.Show("La informacion ha sido modificada exitosamente.");
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se ha podido modificar la informacion.");
-            }
+             
         }
     }
 }

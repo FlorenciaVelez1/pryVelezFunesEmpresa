@@ -63,7 +63,24 @@ namespace pryVelezFunesEmpresa
             get { return varCodTipoProducto; }
             set { varCodTipoProducto= value; }
         }
-        public void LlenarCb(ComboBox cbTipoProducto)
+        public void LlenarCbNomProductos(ComboBox cbNomProductos)
+        {
+            Conexion.ConnectionString = Ruta;
+            Conexion.Open();
+            Comando.Connection = Conexion;
+            Comando.CommandType = CommandType.TableDirect;
+            Comando.CommandText = "Productos";
+            //Adaptador se conecta con la base y trae los datos y se suben los datos a una tabla "virtual"(dataset)
+            Adaptador = new OleDbDataAdapter(Comando);
+            //Tabla virtual
+            DataSet DataConsulta = new DataSet();
+            Adaptador.Fill(DataConsulta);
+            cbNomProductos.DataSource = DataConsulta.Tables[0];
+            //Los datos que queremos que se vean en la lst
+            cbNomProductos.DisplayMember = "Nombre";
+            Conexion.Close();
+        }
+        public void LlenarCbTipoProducto(ComboBox cbTipoProducto)
         {
             Conexion.ConnectionString = Ruta;
             Conexion.Open();
@@ -150,6 +167,37 @@ namespace pryVelezFunesEmpresa
                             varCostoMinorista = Lector.GetDecimal(3);
                             varCostoMayorista = Lector.GetDecimal(4);
                             varDescripcion = Lector.GetString(5);
+                            varBandera = false;
+                        }
+                    }
+                }
+                Conexion.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Hubo un error al buscar el ID del Producto.");
+            }
+        }
+        public void BuscarProducto(string NomProducto)
+        {
+            varBandera = true;
+            try
+            {
+                Conexion.ConnectionString = Ruta;
+                Conexion.Open();
+                Comando.Connection = Conexion;
+                Comando.CommandType = CommandType.TableDirect;
+                Comando.CommandText = Tabla;
+                //Recibe el contenido de la tabla
+                OleDbDataReader Lector = Comando.ExecuteReader();
+                //Si hay filas que leer entra en el "si"
+                if (Lector.HasRows)
+                {
+                    while (Lector.Read())
+                    {
+                        if (Lector.GetString(1) == NomProducto)
+                        {
+                            varIDProducto = Lector.GetInt32(0);
                             varBandera = false;
                         }
                     }

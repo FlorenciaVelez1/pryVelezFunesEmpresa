@@ -263,6 +263,7 @@
             this.Column4});
             this.GrillaClientes.Location = new System.Drawing.Point(18, 30);
             this.GrillaClientes.Name = "GrillaClientes";
+            this.GrillaClientes.ReadOnly = true;
             this.GrillaClientes.RowHeadersVisible = false;
             this.GrillaClientes.RowHeadersWidth = 51;
             this.GrillaClientes.RowTemplate.Height = 24;
@@ -274,6 +275,7 @@
             this.Column1.HeaderText = "Id Cliente";
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Width = 125;
             // 
             // Column2
@@ -281,6 +283,7 @@
             this.Column2.HeaderText = "Nombre y Apellido";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             this.Column2.Width = 125;
             // 
             // Column3
@@ -288,6 +291,7 @@
             this.Column3.HeaderText = "Domicilio";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             this.Column3.Width = 125;
             // 
             // Column4
@@ -295,6 +299,7 @@
             this.Column4.HeaderText = "Teléfono";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             this.Column4.Width = 125;
             // 
             // mrcListadoClientes

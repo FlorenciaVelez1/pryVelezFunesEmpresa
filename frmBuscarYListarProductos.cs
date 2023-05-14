@@ -38,7 +38,7 @@ namespace pryVelezFunesEmpresa
             cmdCancelar.Visible = false;
             NoEditarTXT();
             clsProductos CompletarComboBox = new clsProductos();
-            CompletarComboBox.LlenarCb(cbTipoProducto);
+            CompletarComboBox.LlenarCbTipoProducto(cbTipoProducto);
             cbTipoProducto.SelectedIndex = -1;
         }
         public void Limpieza()

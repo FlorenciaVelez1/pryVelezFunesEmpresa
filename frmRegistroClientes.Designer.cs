@@ -82,6 +82,7 @@
             this.mskIDCliente.TabIndex = 1;
             this.mskIDCliente.ValidatingType = typeof(int);
             this.mskIDCliente.TextChanged += new System.EventHandler(this.mskIDCliente_TextChanged);
+            this.mskIDCliente.Leave += new System.EventHandler(this.mskIDCliente_Leave);
             // 
             // lblIDCliente
             // 
