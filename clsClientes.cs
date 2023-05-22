@@ -45,7 +45,7 @@ namespace pryVelezFunesEmpresa
             get { return varTelefono; }
             set { varTelefono = value; }
         }
-        public void Buscar(Int32 IDCLIENTE)
+        public void BuscarPorIdCliente(Int32 IDCLIENTE)
         {
             varBandera = true;
             try
@@ -79,7 +79,7 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("Hubo un error al buscar el ID Cliente.");
             }
         }
-        public void BuscarCliente(string NomCliente)
+        public void BuscarPorNomCliente(string NomCliente)
         {
             varBandera = true;
             try

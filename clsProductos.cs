@@ -142,7 +142,7 @@ namespace pryVelezFunesEmpresa
             }
             Conexion.Close();
         }
-        public void Buscar(Int32 IdProducto)
+        public void BuscarPorIdProducto(Int32 IdProducto)
         {
             varBandera = true;
             try
@@ -178,7 +178,7 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("Hubo un error al buscar el ID del Producto.");
             }
         }
-        public void BuscarProducto(string NomProducto)
+        public void BuscarPorNomProducto(string NomProducto)
         {
             varBandera = true;
             try
@@ -206,7 +206,7 @@ namespace pryVelezFunesEmpresa
             }
             catch (Exception)
             {
-                MessageBox.Show("Hubo un error al buscar el ID del Producto.");
+                MessageBox.Show("Hubo un error al buscar el nombre del Producto.");
             }
         }
         public void Eliminar(Int32 IDPRODUCTO)

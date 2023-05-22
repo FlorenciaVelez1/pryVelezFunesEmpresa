@@ -64,7 +64,7 @@ namespace pryVelezFunesEmpresa
         private void cmdRegistrar_Click(object sender, EventArgs e)
         {
             clsClientes RegistroClientes = new clsClientes();
-            RegistroClientes.Buscar(Convert.ToInt32(mskIDCliente.Text));
+            RegistroClientes.BuscarPorIdCliente(Convert.ToInt32(mskIDCliente.Text));
             if (RegistroClientes.varBandera == true)
             {
                 RegistroClientes.ClienteID = Convert.ToInt32(mskIDCliente.Text);
@@ -108,7 +108,7 @@ namespace pryVelezFunesEmpresa
             if (mskIDCliente.Text != "")
             {
                 clsClientes RegistroCliente = new clsClientes();
-                RegistroCliente.Buscar(Convert.ToInt32(mskIDCliente.Text));
+                RegistroCliente.BuscarPorIdCliente(Convert.ToInt32(mskIDCliente.Text));
                 if (RegistroCliente.varBandera == false)
                 {
                     MessageBox.Show("El Id del Cliente ya se encuentra registrado, verifique los datos ingresados.");

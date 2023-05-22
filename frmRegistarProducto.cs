@@ -45,7 +45,7 @@ namespace pryVelezFunesEmpresa
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             clsProductos RegistroProducto = new clsProductos();
-            RegistroProducto.Buscar(Convert.ToInt32(mskIdProducto.Text));
+            RegistroProducto.BuscarPorIdProducto(Convert.ToInt32(mskIdProducto.Text));
             if (RegistroProducto.varBandera == true)
             {
                 RegistroProducto.IdProducto = Convert.ToInt32(mskIdProducto.Text);
@@ -109,7 +109,7 @@ namespace pryVelezFunesEmpresa
             if (mskIdProducto.Text != "")
             {
                 clsProductos RegistroProducto = new clsProductos();
-                RegistroProducto.Buscar(Convert.ToInt32(mskIdProducto.Text));
+                RegistroProducto.BuscarPorIdProducto(Convert.ToInt32(mskIdProducto.Text));
                 if (RegistroProducto.varBandera == false)
                 {
                     MessageBox.Show("El Id del Producto ya se encuentra registrado, verifique los datos ingresados.");

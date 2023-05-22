@@ -30,6 +30,7 @@ namespace pryVelezFunesEmpresa
         private string varnomVendedor;
         //Creo un booleano para verificar informacion
         public bool varBandera;
+        public bool varEstadoConexion;
         public Int32 IdProducto
         {
             get { return varIdProducto; }
@@ -73,7 +74,7 @@ namespace pryVelezFunesEmpresa
         public void CalcularTotalVenta( Int32 IdProducto)
         {
             clsProductos BusquedaCosto = new clsProductos();
-            BusquedaCosto.Buscar(IdProducto);
+            BusquedaCosto.BuscarPorIdProducto(IdProducto);
             if ( Cantidad > 5)
             {
                 TotalPago = Cantidad * BusquedaCosto.CostoMayorista;
@@ -134,7 +135,7 @@ namespace pryVelezFunesEmpresa
                 //Recibe el contenido de la tabla
                 OleDbDataReader Lector = Comando.ExecuteReader();
                 //Si hay filas que leer entra en el "si"
-                if (Lector.HasRows)
+                    if (Lector.HasRows)
                 {
                     while (Lector.Read())
                     {
@@ -152,10 +153,111 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("Hubo un error al buscar el ID del Vendedor.");
             }
         }
-
-        public void ListarGrilla(DataGridView GrillaVentas, string NOMBREVENDEDOR, string TIPOPRODUCTO)
+        public void BuscarNomVendedor(string NomVendedor)
         {
-             
+            varBandera = true;
+            try
+            {
+                Conexion.ConnectionString = Ruta;
+                Conexion.Open();
+                Comando.Connection = Conexion;
+                Comando.CommandType = CommandType.TableDirect;
+                Comando.CommandText = "Empleados";
+                //Recibe el contenido de la tabla
+                OleDbDataReader Lector = Comando.ExecuteReader();
+                //Si hay filas que leer entra en el "si"
+                if (Lector.HasRows)
+                {
+                    while (Lector.Read())
+                    {
+                        if (Lector.GetString(1) == NomVendedor)
+                        {
+                            IdVendedor = Lector.GetInt32(0);
+                            varBandera = false;
+                        }
+                    }
+                }
+                Conexion.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Hubo un error al buscar el nombre del Vendedor.");
+            }
         }
+        public void ListarGrillaPorVend(DataGridView GrillaVentas, string NOMBREVENDEDOR, DateTime FechaDesde, DateTime FechaHasta)
+        {
+            try
+            {   BuscarNomVendedor(NOMBREVENDEDOR);
+                Conexion.ConnectionString = Ruta;
+                Conexion.Open();
+                Comando.Connection = Conexion;
+                Comando.CommandType = CommandType.TableDirect;
+                Comando.CommandText = Tabla;
+                GrillaVentas.Rows.Clear();
+                OleDbDataReader Lector = Comando.ExecuteReader();
+                if (Lector.HasRows)
+                {
+                    while (Lector.Read())
+                    {
+                        if (Lector.GetInt32(7) == IdVendedor & Lector.GetDateTime(5) >= FechaDesde & Lector.GetDateTime(5) <= FechaHasta)
+                        {
+                            //llamo las cls para cambiar los numeros por los nombres correspondientes
+                            Int32 IDCLIENTE = Lector.GetInt32(1);
+                            Int32 IDPRODUCTO = Lector.GetInt32(2);
+                            clsClientes objCliente = new clsClientes();
+                            objCliente.BuscarPorIdCliente(IDCLIENTE);
+                            clsProductos objProducto = new clsProductos();
+                            objProducto.BuscarPorIdProducto(IDPRODUCTO);
+                            objProducto.BuscarTipoDeProducto(objProducto.CodTipoProducto);
+                            GrillaVentas.Rows.Add(objCliente.Nom_Apellido, objProducto.NombreProducto,objProducto.TipoProducto, Lector.GetInt32(3), Lector.GetString(4), Lector.GetInt32(6), Lector.GetDateTime(5).ToString("dd/MM/yyyy"), NOMBREVENDEDOR);
+                        }
+                    }
+                }
+                Conexion.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se ha podido cargar la informacion.");
+            }
+        }
+        public void ListarGrillaPorFecha(DataGridView GrillaVentas, DateTime FechaDesde, DateTime FechaHasta)
+        {
+            try
+            {
+                Conexion.ConnectionString = Ruta;
+                Conexion.Open();
+                Comando.Connection = Conexion;
+                Comando.CommandType = CommandType.TableDirect;
+                Comando.CommandText = Tabla;
+                GrillaVentas.Rows.Clear();
+                OleDbDataReader Lector = Comando.ExecuteReader();
+                if (Lector.HasRows)
+                {
+                    while (Lector.Read())
+                    {
+                        if (Lector.GetDateTime(5) >= FechaDesde & Lector.GetDateTime(5) <= FechaHasta)
+                        {
+                            //llamo las cls para cambiar los numeros por los nombres correspondientes
+                            Int32 IDCLIENTE = Lector.GetInt32(1);
+                            Int32 IDPRODUCTO = Lector.GetInt32(2);
+                            Int32 IDVENDEDOR = Lector.GetInt32(7);
+                            clsClientes objCliente = new clsClientes();
+                            objCliente.BuscarPorIdCliente(IDCLIENTE);
+                            clsProductos objProducto = new clsProductos();
+                            objProducto.BuscarPorIdProducto(IDPRODUCTO);
+                            objProducto.BuscarTipoDeProducto(objProducto.CodTipoProducto);
+                            BuscarVendedor(IDVENDEDOR);
+                            GrillaVentas.Rows.Add(objCliente.Nom_Apellido, objProducto.NombreProducto, objProducto.TipoProducto, Lector.GetInt32(3), Lector.GetString(4), Lector.GetInt32(6), Lector.GetDateTime(5).ToString("dd/MM/yyyy"), nomVendedor);
+                        }
+                    }
+                }
+                Conexion.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se ha podido cargar la informacion.");
+            }
+        }
+
     }
 }

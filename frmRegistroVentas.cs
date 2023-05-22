@@ -60,8 +60,8 @@ namespace pryVelezFunesEmpresa
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
             RegistroVentas.BuscarVendedor(Convert.ToInt32(mskVendedor.Text));
-            objProductos.Buscar(Convert.ToInt32(mskIdProducto.Text));
-            objClientes.Buscar(Convert.ToInt32(mskIdCliente.Text));
+            objProductos.BuscarPorIdProducto(Convert.ToInt32(mskIdProducto.Text));
+            objClientes.BuscarPorIdCliente(Convert.ToInt32(mskIdCliente.Text));
             if (RegistroVentas.varBandera == false & objProductos.varBandera == false & objClientes.varBandera == false)
             {
                 RegistroVentas.IdProducto = Convert.ToInt32(mskIdProducto.Text);
@@ -112,7 +112,7 @@ namespace pryVelezFunesEmpresa
         private void cbNomClientes_SelectedIndexChanged(object sender, EventArgs e)
         {
             clsClientes BuscarIDCliente = new clsClientes();
-            BuscarIDCliente.BuscarCliente(cbNomClientes.Text);
+            BuscarIDCliente.BuscarPorNomCliente(cbNomClientes.Text);
             if (BuscarIDCliente.varBandera == false)
             {
                 mskIdCliente.Text = Convert.ToString(BuscarIDCliente.ClienteID);
@@ -121,7 +121,7 @@ namespace pryVelezFunesEmpresa
         private void cbProducto_SelectedIndexChanged(object sender, EventArgs e)
         {
             clsProductos BuscarIDProducto = new clsProductos();
-            BuscarIDProducto.BuscarProducto(cbProducto.Text);
+            BuscarIDProducto.BuscarPorNomProducto(cbProducto.Text);
             if (BuscarIDProducto.varBandera == false)
             {
                 mskIdProducto.Text = Convert.ToString(BuscarIDProducto.IdProducto);

@@ -51,7 +51,7 @@ namespace pryVelezFunesEmpresa
             Int32 IDCLIENTE = Convert.ToInt32(mskIdCliente.Text);
             //Llamo la clase para poder llenar los txt y msk con la informacion correspondiente
             clsClientes BuscarCliente = new clsClientes();
-            BuscarCliente.Buscar(IDCLIENTE);
+            BuscarCliente.BuscarPorIdCliente(IDCLIENTE);
             if (BuscarCliente.ClienteID != IDCLIENTE)
             {
                 MessageBox.Show("El ID de Socio ingresado no se encuentra en la base de datos.");

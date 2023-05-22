@@ -61,7 +61,7 @@ namespace pryVelezFunesEmpresa
         {
             Int32 IDPRODUCTO = Convert.ToInt32(mskIdProducto.Text);
             clsProductos BuscarProducto = new clsProductos();
-            BuscarProducto.Buscar(IDPRODUCTO);
+            BuscarProducto.BuscarPorIdProducto(IDPRODUCTO);
             if (BuscarProducto.IdProducto != IDPRODUCTO)
             {
                 MessageBox.Show("El ID del Producto ingresado no se encuentra en la base de datos.");

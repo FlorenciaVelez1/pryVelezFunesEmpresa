@@ -41,14 +41,11 @@
             this.cmdConsultar = new System.Windows.Forms.Button();
             this.cmdSalir = new System.Windows.Forms.Button();
             this.cbVendedor = new System.Windows.Forms.ComboBox();
-            this.cbTipoProducto = new System.Windows.Forms.ComboBox();
             this.lblVendedor = new System.Windows.Forms.Label();
-            this.lblTipoProducto = new System.Windows.Forms.Label();
             this.lblFechaInicio = new System.Windows.Forms.Label();
             this.lblFechaHasta = new System.Windows.Forms.Label();
             this.dtpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.bvTipoProducto = new System.Windows.Forms.CheckBox();
             this.bvVendedor = new System.Windows.Forms.CheckBox();
             this.mrcListadoVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaVentas)).BeginInit();
@@ -184,15 +181,6 @@
             this.cbVendedor.Size = new System.Drawing.Size(119, 24);
             this.cbVendedor.TabIndex = 114;
             // 
-            // cbTipoProducto
-            // 
-            this.cbTipoProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipoProducto.FormattingEnabled = true;
-            this.cbTipoProducto.Location = new System.Drawing.Point(438, 22);
-            this.cbTipoProducto.Name = "cbTipoProducto";
-            this.cbTipoProducto.Size = new System.Drawing.Size(119, 24);
-            this.cbTipoProducto.TabIndex = 115;
-            // 
             // lblVendedor
             // 
             this.lblVendedor.AutoSize = true;
@@ -202,16 +190,6 @@
             this.lblVendedor.Size = new System.Drawing.Size(80, 20);
             this.lblVendedor.TabIndex = 118;
             this.lblVendedor.Text = "Vendedor";
-            // 
-            // lblTipoProducto
-            // 
-            this.lblTipoProducto.AutoSize = true;
-            this.lblTipoProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoProducto.Location = new System.Drawing.Point(298, 22);
-            this.lblTipoProducto.Name = "lblTipoProducto";
-            this.lblTipoProducto.Size = new System.Drawing.Size(113, 20);
-            this.lblTipoProducto.TabIndex = 119;
-            this.lblTipoProducto.Text = "Tipo Producto";
             // 
             // lblFechaInicio
             // 
@@ -249,15 +227,6 @@
             this.dtpFechaDesde.Size = new System.Drawing.Size(200, 22);
             this.dtpFechaDesde.TabIndex = 125;
             // 
-            // bvTipoProducto
-            // 
-            this.bvTipoProducto.AutoSize = true;
-            this.bvTipoProducto.Location = new System.Drawing.Point(577, 26);
-            this.bvTipoProducto.Name = "bvTipoProducto";
-            this.bvTipoProducto.Size = new System.Drawing.Size(18, 17);
-            this.bvTipoProducto.TabIndex = 126;
-            this.bvTipoProducto.UseVisualStyleBackColor = true;
-            // 
             // bvVendedor
             // 
             this.bvVendedor.AutoSize = true;
@@ -273,14 +242,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1220, 572);
             this.Controls.Add(this.bvVendedor);
-            this.Controls.Add(this.bvTipoProducto);
             this.Controls.Add(this.dtpFechaDesde);
             this.Controls.Add(this.dtpFechaHasta);
             this.Controls.Add(this.lblFechaHasta);
             this.Controls.Add(this.lblFechaInicio);
-            this.Controls.Add(this.lblTipoProducto);
             this.Controls.Add(this.lblVendedor);
-            this.Controls.Add(this.cbTipoProducto);
             this.Controls.Add(this.cbVendedor);
             this.Controls.Add(this.mrcListadoVentas);
             this.Name = "frmBuscarYListarVentas";
@@ -300,9 +266,7 @@
         private System.Windows.Forms.Button cmdConsultar;
         private System.Windows.Forms.Button cmdSalir;
         private System.Windows.Forms.ComboBox cbVendedor;
-        private System.Windows.Forms.ComboBox cbTipoProducto;
         private System.Windows.Forms.Label lblVendedor;
-        private System.Windows.Forms.Label lblTipoProducto;
         private System.Windows.Forms.Label lblFechaInicio;
         private System.Windows.Forms.Label lblFechaHasta;
         private System.Windows.Forms.DateTimePicker dtpFechaHasta;
@@ -315,7 +279,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.CheckBox bvTipoProducto;
         private System.Windows.Forms.CheckBox bvVendedor;
     }
 }

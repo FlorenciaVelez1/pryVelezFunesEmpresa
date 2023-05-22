@@ -24,7 +24,6 @@ namespace pryVelezFunesEmpresa
         {
             dtpFechaHasta.Value = DateTime.Now;
             dtpFechaDesde.Value = DateTime.Now;
-            cbTipoProducto.SelectedIndex = -1;
             cbVendedor.SelectedIndex = -1;
             //Lleno los cb con la informacion de la base
             clsVentas LlenarCbVendedores = new clsVentas();
@@ -32,26 +31,20 @@ namespace pryVelezFunesEmpresa
             cbVendedor.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbVendedor.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbVendedor.SelectedIndex = -1;
-            clsProductos CompletarCb = new clsProductos();
-            CompletarCb.LlenarCbTipoProducto(cbTipoProducto);
-            cbTipoProducto.SelectedIndex = -1;
         }
         private void cmdConsultar_Click(object sender, EventArgs e)
         {
             clsVentas objVentas = new clsVentas();
-            string TipoProducto = cbTipoProducto.Text;
             string NomVendedor = cbVendedor.Text;
-            if(bvVendedor.Checked == true & bvTipoProducto.Checked == true)
+            DateTime FechaDesde = dtpFechaDesde.Value.Date;
+            DateTime FechaHasta = dtpFechaHasta.Value.Date;
+            if (bvVendedor.Checked == true)
             {
-                objVentas.ListarGrilla(GrillaVentas, NomVendedor, TipoProducto);
+                objVentas.ListarGrillaPorVend(GrillaVentas, NomVendedor, FechaDesde, FechaHasta);
             }
-            else if(bvVendedor.Checked == true)
+            else 
             {
-
-            }
-            else if(bvTipoProducto.Checked == true)
-            {
-
+                objVentas.ListarGrillaPorFecha(GrillaVentas, FechaDesde, FechaHasta);
             }
         }
         private void dtpFechaHasta_ValueChanged(object sender, EventArgs e)
