@@ -26,8 +26,8 @@ namespace pryVelezFunesEmpresa
             dtpFechaDesde.Value = DateTime.Now;
             cbVendedor.SelectedIndex = -1;
             //Lleno los cb con la informacion de la base
-            clsVentas LlenarCbVendedores = new clsVentas();
-            LlenarCbVendedores.LlenarCbNomVendedores(cbVendedor);
+            clsEmpleados objEmpleados = new clsEmpleados();
+            objEmpleados.LlenarCbNomVendedores(cbVendedor);
             cbVendedor.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbVendedor.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbVendedor.SelectedIndex = -1;

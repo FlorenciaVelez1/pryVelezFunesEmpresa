@@ -59,7 +59,8 @@ namespace pryVelezFunesEmpresa
         }
         private void cmdAgregar_Click(object sender, EventArgs e)
         {
-            RegistroVentas.BuscarVendedor(Convert.ToInt32(mskVendedor.Text));
+            clsEmpleados objEmpleados = new clsEmpleados();
+            objEmpleados.BuscarVendedor(Convert.ToInt32(mskVendedor.Text));
             objProductos.BuscarPorIdProducto(Convert.ToInt32(mskIdProducto.Text));
             objClientes.BuscarPorIdCliente(Convert.ToInt32(mskIdCliente.Text));
             if (RegistroVentas.varBandera == false & objProductos.varBandera == false & objClientes.varBandera == false)
@@ -101,8 +102,10 @@ namespace pryVelezFunesEmpresa
         private void mskVendedor_Leave(object sender, EventArgs e)
         {
             if (mskVendedor.Text != "")
-            { RegistroVentas.BuscarVendedor(Convert.ToInt32(mskVendedor.Text));
-              if (RegistroVentas.varBandera == true)
+            {
+              clsEmpleados objEmpleados = new clsEmpleados();
+              objEmpleados.BuscarVendedor(Convert.ToInt32(mskVendedor.Text));
+              if (objEmpleados.varBandera == true)
               {
                 MessageBox.Show("El Id del Vendedor no se encuentra registrado, verifique los datos ingresados.");
                 mskVendedor.Focus();
