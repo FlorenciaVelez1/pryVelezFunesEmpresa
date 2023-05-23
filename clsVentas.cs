@@ -125,32 +125,65 @@ namespace pryVelezFunesEmpresa
         public void BuscarVendedor(Int32 IdVendedor)
         {
             varBandera = true;
-            try
+            if (varEstadoConexion == false)
             {
-                Conexion.ConnectionString = Ruta;
-                Conexion.Open();
-                Comando.Connection = Conexion;
-                Comando.CommandType = CommandType.TableDirect;
-                Comando.CommandText = "Empleados";
-                //Recibe el contenido de la tabla
-                OleDbDataReader Lector = Comando.ExecuteReader();
-                //Si hay filas que leer entra en el "si"
-                    if (Lector.HasRows)
+                try
                 {
-                    while (Lector.Read())
+                    Comando.Connection = Conexion;
+                    Comando.CommandType = CommandType.TableDirect;
+                    Comando.CommandText = "Empleados";
+                    //Recibe el contenido de la tabla
+                    OleDbDataReader Lector2 = Comando.ExecuteReader();
+                    //Si hay filas que leer entra en el "si"
+                    if (Lector2.HasRows)
                     {
-                        if (Lector.GetInt32(0) == IdVendedor)
+                        while (Lector2.Read())
                         {
-                            nomVendedor = Lector.GetString(1);
-                            varBandera = false;
+                            if (Lector2.GetInt32(0) == IdVendedor)
+                            {
+                                nomVendedor = Lector2.GetString(1);
+                                varBandera = false;
+                            }
                         }
                     }
+                    Conexion.Close();
                 }
-                Conexion.Close();
+                catch (Exception)
+                {
+                    MessageBox.Show("Hubo un error al buscar el ID del Vendedor.");
+                }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Hubo un error al buscar el ID del Vendedor.");
+                try
+                {
+                    Conexion.ConnectionString = Ruta;
+                    Conexion.Open();
+                    Comando.Connection = Conexion;
+                    Comando.CommandType = CommandType.TableDirect;
+                    Comando.CommandText = "Empleados";
+                    //Recibe el contenido de la tabla
+                    OleDbDataReader Lector = Comando.ExecuteReader();
+                    //Si hay filas que leer entra en el "si"
+                    if (Lector.HasRows)
+                    {
+                        while (Lector.Read())
+                        {
+                            if (Lector.GetInt32(0) == IdVendedor)
+                            {
+                                nomVendedor = Lector.GetString(1);
+                                varBandera = false;
+                            }
+                        }
+                    }
+                    Conexion.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Hubo un error al buscar el ID del Vendedor.");
+                }
+
+
             }
         }
         public void BuscarNomVendedor(string NomVendedor)
@@ -246,6 +279,7 @@ namespace pryVelezFunesEmpresa
                             clsProductos objProducto = new clsProductos();
                             objProducto.BuscarPorIdProducto(IDPRODUCTO);
                             objProducto.BuscarTipoDeProducto(objProducto.CodTipoProducto);
+                            varEstadoConexion = false;
                             BuscarVendedor(IDVENDEDOR);
                             GrillaVentas.Rows.Add(objCliente.Nom_Apellido, objProducto.NombreProducto, objProducto.TipoProducto, Lector.GetInt32(3), Lector.GetString(4), Lector.GetInt32(6), Lector.GetDateTime(5).ToString("dd/MM/yyyy"), nomVendedor);
                         }
