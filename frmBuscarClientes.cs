@@ -54,7 +54,7 @@ namespace pryVelezFunesEmpresa
             BuscarCliente.BuscarPorIdCliente(IDCLIENTE);
             if (BuscarCliente.ClienteID != IDCLIENTE)
             {
-                MessageBox.Show("El ID de Socio ingresado no se encuentra en la base de datos.");
+                MessageBox.Show("El ID del Cliente ingresado no se encuentra en la base de datos.");
             }
             else
             {

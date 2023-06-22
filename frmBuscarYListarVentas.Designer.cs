@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mrcListadoVentas = new System.Windows.Forms.GroupBox();
             this.GrillaVentas = new System.Windows.Forms.DataGridView();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,8 +50,10 @@
             this.dtpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaDesde = new System.Windows.Forms.DateTimePicker();
             this.bvVendedor = new System.Windows.Forms.CheckBox();
+            this.chartPastel = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mrcListadoVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaVentas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPastel)).BeginInit();
             this.SuspendLayout();
             // 
             // mrcListadoVentas
@@ -60,7 +65,7 @@
             this.mrcListadoVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mrcListadoVentas.Location = new System.Drawing.Point(12, 71);
             this.mrcListadoVentas.Name = "mrcListadoVentas";
-            this.mrcListadoVentas.Size = new System.Drawing.Size(1196, 489);
+            this.mrcListadoVentas.Size = new System.Drawing.Size(946, 489);
             this.mrcListadoVentas.TabIndex = 113;
             this.mrcListadoVentas.TabStop = false;
             this.mrcListadoVentas.Text = "Listado de Ventas";
@@ -83,7 +88,7 @@
             this.GrillaVentas.RowHeadersVisible = false;
             this.GrillaVentas.RowHeadersWidth = 51;
             this.GrillaVentas.RowTemplate.Height = 24;
-            this.GrillaVentas.Size = new System.Drawing.Size(1173, 410);
+            this.GrillaVentas.Size = new System.Drawing.Size(916, 410);
             this.GrillaVentas.TabIndex = 107;
             // 
             // Column8
@@ -153,7 +158,7 @@
             // cmdConsultar
             // 
             this.cmdConsultar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdConsultar.Location = new System.Drawing.Point(1075, 443);
+            this.cmdConsultar.Location = new System.Drawing.Point(818, 449);
             this.cmdConsultar.Margin = new System.Windows.Forms.Padding(4);
             this.cmdConsultar.Name = "cmdConsultar";
             this.cmdConsultar.Size = new System.Drawing.Size(115, 33);
@@ -165,7 +170,7 @@
             // cmdSalir
             // 
             this.cmdSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSalir.Location = new System.Drawing.Point(938, 442);
+            this.cmdSalir.Location = new System.Drawing.Point(681, 448);
             this.cmdSalir.Name = "cmdSalir";
             this.cmdSalir.Size = new System.Drawing.Size(108, 33);
             this.cmdSalir.TabIndex = 14;
@@ -195,7 +200,7 @@
             // 
             this.lblFechaInicio.AutoSize = true;
             this.lblFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaInicio.Location = new System.Drawing.Point(635, 23);
+            this.lblFechaInicio.Location = new System.Drawing.Point(385, 26);
             this.lblFechaInicio.Name = "lblFechaInicio";
             this.lblFechaInicio.Size = new System.Drawing.Size(58, 20);
             this.lblFechaInicio.TabIndex = 120;
@@ -205,7 +210,7 @@
             // 
             this.lblFechaHasta.AutoSize = true;
             this.lblFechaHasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaHasta.Location = new System.Drawing.Point(924, 22);
+            this.lblFechaHasta.Location = new System.Drawing.Point(674, 25);
             this.lblFechaHasta.Name = "lblFechaHasta";
             this.lblFechaHasta.Size = new System.Drawing.Size(54, 20);
             this.lblFechaHasta.TabIndex = 121;
@@ -213,7 +218,7 @@
             // 
             // dtpFechaHasta
             // 
-            this.dtpFechaHasta.Location = new System.Drawing.Point(995, 22);
+            this.dtpFechaHasta.Location = new System.Drawing.Point(745, 25);
             this.dtpFechaHasta.Name = "dtpFechaHasta";
             this.dtpFechaHasta.Size = new System.Drawing.Size(200, 22);
             this.dtpFechaHasta.TabIndex = 124;
@@ -222,7 +227,7 @@
             // 
             // dtpFechaDesde
             // 
-            this.dtpFechaDesde.Location = new System.Drawing.Point(709, 23);
+            this.dtpFechaDesde.Location = new System.Drawing.Point(459, 26);
             this.dtpFechaDesde.Name = "dtpFechaDesde";
             this.dtpFechaDesde.Size = new System.Drawing.Size(200, 22);
             this.dtpFechaDesde.TabIndex = 125;
@@ -236,11 +241,29 @@
             this.bvVendedor.TabIndex = 127;
             this.bvVendedor.UseVisualStyleBackColor = true;
             // 
+            // chartPastel
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartPastel.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartPastel.Legends.Add(legend1);
+            this.chartPastel.Location = new System.Drawing.Point(964, 71);
+            this.chartPastel.Name = "chartPastel";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartPastel.Series.Add(series1);
+            this.chartPastel.Size = new System.Drawing.Size(425, 283);
+            this.chartPastel.TabIndex = 129;
+            this.chartPastel.Text = "chart1";
+            // 
             // frmBuscarYListarVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1220, 572);
+            this.ClientSize = new System.Drawing.Size(1553, 572);
+            this.Controls.Add(this.chartPastel);
             this.Controls.Add(this.bvVendedor);
             this.Controls.Add(this.dtpFechaDesde);
             this.Controls.Add(this.dtpFechaHasta);
@@ -255,6 +278,7 @@
             this.Load += new System.EventHandler(this.frmBuscarYListarVentas_Load);
             this.mrcListadoVentas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GrillaVentas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPastel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +304,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.CheckBox bvVendedor;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPastel;
     }
 }

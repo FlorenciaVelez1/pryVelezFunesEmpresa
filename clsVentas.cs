@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace pryVelezFunesEmpresa
 {
@@ -30,7 +31,6 @@ namespace pryVelezFunesEmpresa
         private string varnomVendedor;
         //Creo un booleano para verificar informacion
         public bool varBandera;
-        public bool varEstadoConexion;
         public Int32 IdProducto
         {
             get { return varIdProducto; }
@@ -136,7 +136,7 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("Hubo un error al buscar el nombre del Vendedor.");
             }
         }
-        public void ListarGrillaPorVend(DataGridView GrillaVentas, string NOMBREVENDEDOR, DateTime FechaDesde, DateTime FechaHasta)
+        public void ListarGrillaPorVend(DataGridView GrillaVentas, string NOMBREVENDEDOR, DateTime FechaDesde, DateTime FechaHasta, Chart Grafico)
         {
             try
             {   BuscarNomVendedor(NOMBREVENDEDOR);
@@ -146,6 +146,7 @@ namespace pryVelezFunesEmpresa
                 Comando.CommandType = CommandType.TableDirect;
                 Comando.CommandText = Tabla;
                 GrillaVentas.Rows.Clear();
+                Grafico.Series[0].Points.Clear();
                 OleDbDataReader Lector = Comando.ExecuteReader();
                 if (Lector.HasRows)
                 {
@@ -172,7 +173,7 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("No se ha podido cargar la informacion.");
             }
         }
-        public void ListarGrillaPorFecha(DataGridView GrillaVentas, DateTime FechaDesde, DateTime FechaHasta)
+        public void ListarGrillaPorFecha(DataGridView GrillaVentas, DateTime FechaDesde, DateTime FechaHasta, Chart Grafico)
         {
             try
             {
@@ -182,6 +183,7 @@ namespace pryVelezFunesEmpresa
                 Comando.CommandType = CommandType.TableDirect;
                 Comando.CommandText = Tabla;
                 GrillaVentas.Rows.Clear();
+                Grafico.Series[0].Points.Clear();
                 OleDbDataReader Lector = Comando.ExecuteReader();
                 if (Lector.HasRows)
                 {
