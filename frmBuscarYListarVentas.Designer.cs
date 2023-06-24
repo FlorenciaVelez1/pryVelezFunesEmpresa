@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mrcListadoVentas = new System.Windows.Forms.GroupBox();
             this.GrillaVentas = new System.Windows.Forms.DataGridView();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,10 +47,8 @@
             this.dtpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaDesde = new System.Windows.Forms.DateTimePicker();
             this.bvVendedor = new System.Windows.Forms.CheckBox();
-            this.chartPastel = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mrcListadoVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaVentas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPastel)).BeginInit();
             this.SuspendLayout();
             // 
             // mrcListadoVentas
@@ -241,29 +236,11 @@
             this.bvVendedor.TabIndex = 127;
             this.bvVendedor.UseVisualStyleBackColor = true;
             // 
-            // chartPastel
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chartPastel.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartPastel.Legends.Add(legend1);
-            this.chartPastel.Location = new System.Drawing.Point(964, 71);
-            this.chartPastel.Name = "chartPastel";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartPastel.Series.Add(series1);
-            this.chartPastel.Size = new System.Drawing.Size(425, 283);
-            this.chartPastel.TabIndex = 129;
-            this.chartPastel.Text = "chart1";
-            // 
             // frmBuscarYListarVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1553, 572);
-            this.Controls.Add(this.chartPastel);
+            this.ClientSize = new System.Drawing.Size(969, 572);
             this.Controls.Add(this.bvVendedor);
             this.Controls.Add(this.dtpFechaDesde);
             this.Controls.Add(this.dtpFechaHasta);
@@ -278,7 +255,6 @@
             this.Load += new System.EventHandler(this.frmBuscarYListarVentas_Load);
             this.mrcListadoVentas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GrillaVentas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPastel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,6 +280,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.CheckBox bvVendedor;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartPastel;
     }
 }

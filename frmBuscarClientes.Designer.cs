@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mskIdCliente = new System.Windows.Forms.MaskedTextBox();
             this.cmdSalir = new System.Windows.Forms.Button();
             this.cmdCancelar = new System.Windows.Forms.Button();
             this.cmdGuardar = new System.Windows.Forms.Button();
@@ -42,7 +41,7 @@
             this.mskTelefono = new System.Windows.Forms.MaskedTextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblDireccion = new System.Windows.Forms.Label();
-            this.lblIDCliente = new System.Windows.Forms.Label();
+            this.lbCliente = new System.Windows.Forms.Label();
             this.cmdExportarCli = new System.Windows.Forms.Button();
             this.cmdConsultarCliente = new System.Windows.Forms.Button();
             this.GrillaClientes = new System.Windows.Forms.DataGridView();
@@ -51,20 +50,11 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mrcListadoClientes = new System.Windows.Forms.GroupBox();
+            this.cbClientes = new System.Windows.Forms.ComboBox();
             this.mrcInformacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaClientes)).BeginInit();
             this.mrcListadoClientes.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mskIdCliente
-            // 
-            this.mskIdCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mskIdCliente.Location = new System.Drawing.Point(148, 23);
-            this.mskIdCliente.Mask = "99999";
-            this.mskIdCliente.Name = "mskIdCliente";
-            this.mskIdCliente.Size = new System.Drawing.Size(171, 27);
-            this.mskIdCliente.TabIndex = 98;
-            this.mskIdCliente.TextChanged += new System.EventHandler(this.mskIdCliente_TextChanged);
             // 
             // cmdSalir
             // 
@@ -218,16 +208,16 @@
             this.lblDireccion.TabIndex = 83;
             this.lblDireccion.Text = "Domicilio:";
             // 
-            // lblIDCliente
+            // lbCliente
             // 
-            this.lblIDCliente.AutoSize = true;
-            this.lblIDCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIDCliente.Location = new System.Drawing.Point(18, 23);
-            this.lblIDCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblIDCliente.Name = "lblIDCliente";
-            this.lblIDCliente.Size = new System.Drawing.Size(99, 20);
-            this.lblIDCliente.TabIndex = 105;
-            this.lblIDCliente.Text = "ID Cliente:";
+            this.lbCliente.AutoSize = true;
+            this.lbCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCliente.Location = new System.Drawing.Point(18, 23);
+            this.lbCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbCliente.Name = "lbCliente";
+            this.lbCliente.Size = new System.Drawing.Size(145, 20);
+            this.lbCliente.TabIndex = 105;
+            this.lbCliente.Text = "Nombre Cliente:";
             // 
             // cmdExportarCli
             // 
@@ -316,14 +306,23 @@
             this.mrcListadoClientes.TabStop = false;
             this.mrcListadoClientes.Text = "Listado de Clientes";
             // 
+            // cbClientes
+            // 
+            this.cbClientes.FormattingEnabled = true;
+            this.cbClientes.Location = new System.Drawing.Point(181, 23);
+            this.cbClientes.Name = "cbClientes";
+            this.cbClientes.Size = new System.Drawing.Size(147, 24);
+            this.cbClientes.TabIndex = 1;
+            this.cbClientes.SelectedIndexChanged += new System.EventHandler(this.cbClientes_SelectedIndexChanged);
+            // 
             // frmBuscarClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(1046, 330);
+            this.Controls.Add(this.cbClientes);
             this.Controls.Add(this.mrcListadoClientes);
-            this.Controls.Add(this.mskIdCliente);
             this.Controls.Add(this.cmdSalir);
             this.Controls.Add(this.cmdCancelar);
             this.Controls.Add(this.cmdGuardar);
@@ -331,7 +330,7 @@
             this.Controls.Add(this.cmdModificar);
             this.Controls.Add(this.cmdBuscar);
             this.Controls.Add(this.mrcInformacion);
-            this.Controls.Add(this.lblIDCliente);
+            this.Controls.Add(this.lbCliente);
             this.Name = "frmBuscarClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscar Clientes";
@@ -346,8 +345,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.MaskedTextBox mskIdCliente;
         private System.Windows.Forms.Button cmdSalir;
         private System.Windows.Forms.Button cmdCancelar;
         private System.Windows.Forms.Button cmdGuardar;
@@ -361,7 +358,7 @@
         private System.Windows.Forms.MaskedTextBox mskTelefono;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblDireccion;
-        private System.Windows.Forms.Label lblIDCliente;
+        private System.Windows.Forms.Label lbCliente;
         private System.Windows.Forms.Button cmdExportarCli;
         private System.Windows.Forms.Button cmdConsultarCliente;
         private System.Windows.Forms.DataGridView GrillaClientes;
@@ -370,5 +367,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.GroupBox mrcListadoClientes;
+        private System.Windows.Forms.ComboBox cbClientes;
     }
 }

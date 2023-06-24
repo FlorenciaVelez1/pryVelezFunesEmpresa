@@ -40,11 +40,11 @@ namespace pryVelezFunesEmpresa
             DateTime FechaHasta = dtpFechaHasta.Value.Date;
             if (bvVendedor.Checked == true)
             {
-                objVentas.ListarGrillaPorVend(GrillaVentas, NomVendedor, FechaDesde, FechaHasta, chartPastel);
+                objVentas.ListarGrillaPorVend(GrillaVentas, NomVendedor, FechaDesde, FechaHasta);
             }
             else 
             {
-                objVentas.ListarGrillaPorFecha(GrillaVentas, FechaDesde, FechaHasta, chartPastel);
+                objVentas.ListarGrillaPorFecha(GrillaVentas, FechaDesde, FechaHasta);
             }
         }
         private void dtpFechaHasta_ValueChanged(object sender, EventArgs e)

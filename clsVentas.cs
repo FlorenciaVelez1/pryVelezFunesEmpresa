@@ -136,7 +136,7 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("Hubo un error al buscar el nombre del Vendedor.");
             }
         }
-        public void ListarGrillaPorVend(DataGridView GrillaVentas, string NOMBREVENDEDOR, DateTime FechaDesde, DateTime FechaHasta, Chart Grafico)
+        public void ListarGrillaPorVend(DataGridView GrillaVentas, string NOMBREVENDEDOR, DateTime FechaDesde, DateTime FechaHasta)
         {
             try
             {   BuscarNomVendedor(NOMBREVENDEDOR);
@@ -146,7 +146,6 @@ namespace pryVelezFunesEmpresa
                 Comando.CommandType = CommandType.TableDirect;
                 Comando.CommandText = Tabla;
                 GrillaVentas.Rows.Clear();
-                Grafico.Series[0].Points.Clear();
                 OleDbDataReader Lector = Comando.ExecuteReader();
                 if (Lector.HasRows)
                 {
@@ -163,6 +162,7 @@ namespace pryVelezFunesEmpresa
                             objProducto.BuscarPorIdProducto(IDPRODUCTO);
                             objProducto.BuscarTipoDeProducto(objProducto.CodTipoProducto);
                             GrillaVentas.Rows.Add(objCliente.Nom_Apellido, objProducto.NombreProducto,objProducto.TipoProducto, Lector.GetInt32(3), Lector.GetString(4), Lector.GetInt32(6), Lector.GetDateTime(5).ToString("dd/MM/yyyy"), NOMBREVENDEDOR);
+
                         }
                     }
                 }
@@ -173,7 +173,7 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("No se ha podido cargar la informacion.");
             }
         }
-        public void ListarGrillaPorFecha(DataGridView GrillaVentas, DateTime FechaDesde, DateTime FechaHasta, Chart Grafico)
+        public void ListarGrillaPorFecha(DataGridView GrillaVentas, DateTime FechaDesde, DateTime FechaHasta)
         {
             try
             {
@@ -183,7 +183,6 @@ namespace pryVelezFunesEmpresa
                 Comando.CommandType = CommandType.TableDirect;
                 Comando.CommandText = Tabla;
                 GrillaVentas.Rows.Clear();
-                Grafico.Series[0].Points.Clear();
                 OleDbDataReader Lector = Comando.ExecuteReader();
                 if (Lector.HasRows)
                 {

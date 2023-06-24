@@ -99,6 +99,9 @@ namespace pryVelezFunesEmpresa
                         if (Lector.GetString(1) == NomCliente)
                         {
                             ClienteID = Lector.GetInt32(0);
+                            Nom_Apellido = Lector.GetString(1);
+                            DomicilioCliente = Lector.GetString(2);
+                            TelefonoCliente = Lector.GetDouble(3);
                             varBandera = false;
                         }
                     }
@@ -131,11 +134,12 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("No se han podido registrar los datos.");
             }
         }
-        public void Eliminar(Int32 IDCLIENTE)
+        public void Eliminar(string CLIENTE)
         {
+            BuscarPorNomCliente(CLIENTE);
             try
             {
-                string Sql = "DELETE FROM Clientes WHERE (" + IDCLIENTE + "= [IdCliente])";
+                string Sql = "DELETE FROM Clientes WHERE (" + ClienteID  + "= [IdCliente])";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
                 Comando.Connection = Conexion;
@@ -151,12 +155,12 @@ namespace pryVelezFunesEmpresa
                 MessageBox.Show("No se ha podido eliminar la informacion del cliente correctamente");
             }
         }
-        public void Modificar(Int32 IDCLIENTE)
+        public void Modificar(string CLIENTE)
         {
             try
             {
-                string Sql = "UPDATE Clientes SET [Nombre y Apellido]= '" + Nom_Apellido + "', [Domicilio]= '" + DomicilioCliente + ", [Telefono]= " + TelefonoCliente + 
-                    " WHERE [IdCliente] = " + IDCLIENTE + "";
+                string Sql = "UPDATE Clientes SET [Nombre y Apellido]= '" + Nom_Apellido + "', [Domicilio]= '" + DomicilioCliente + "', [Telefono]= " + TelefonoCliente +
+                    " WHERE [Id Cliente] = " + ClienteID + "";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
                 Comando.Connection = Conexion;

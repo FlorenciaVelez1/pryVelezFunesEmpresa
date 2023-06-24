@@ -25,6 +25,11 @@ namespace pryVelezFunesEmpresa
             cmdBuscar.Enabled = false;
             cmdCancelar.Visible = false;
             NoEditarTXT();
+            clsClientes LlenarCBClientes = new clsClientes();
+            LlenarCBClientes.LlenarNomClientes(cbClientes);
+            cbClientes.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbClientes.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbClientes.SelectedIndex = -1;
         }
         private void NoEditarTXT()
         {
@@ -35,7 +40,6 @@ namespace pryVelezFunesEmpresa
         private void Limpiar()
         {
             //Limpio los txt y lst
-            mskIdCliente.Text = "";
             txtNombreApellido.Text = "";
             txtDomicilio.Text = "";
             mskTelefono.Text = "";
@@ -44,34 +48,27 @@ namespace pryVelezFunesEmpresa
             cmdModificar.Enabled = false;
             cmdGuardar.Enabled = false;
             NoEditarTXT();
-            mskIdCliente.Focus();
         }
         private void cmdBuscar_Click(object sender, EventArgs e)
         {
-            Int32 IDCLIENTE = Convert.ToInt32(mskIdCliente.Text);
+            string CLIENTE = cbClientes.Text;
             //Llamo la clase para poder llenar los txt y msk con la informacion correspondiente
             clsClientes BuscarCliente = new clsClientes();
-            BuscarCliente.BuscarPorIdCliente(IDCLIENTE);
-            if (BuscarCliente.ClienteID != IDCLIENTE)
-            {
-                MessageBox.Show("El ID del Cliente ingresado no se encuentra en la base de datos.");
-            }
-            else
-            {
-                txtNombreApellido.Text = BuscarCliente.Nom_Apellido;
-                txtDomicilio.Text = BuscarCliente.DomicilioCliente;
-                mskTelefono.Text = Convert.ToString(BuscarCliente.TelefonoCliente);
-                //habilito los botones
-                cmdEliminar.Enabled = true;
-                cmdModificar.Enabled = true;
-                NoEditarTXT();
-            }
+            BuscarCliente.BuscarPorNomCliente(CLIENTE);
+            txtNombreApellido.Text = BuscarCliente.Nom_Apellido;
+            txtDomicilio.Text = BuscarCliente.DomicilioCliente;
+            mskTelefono.Text = Convert.ToString(BuscarCliente.TelefonoCliente);
+            //habilito los botones
+            cmdEliminar.Enabled = true;
+            cmdModificar.Enabled = true;
+            NoEditarTXT();
+
         }
         private void cmdEliminar_Click(object sender, EventArgs e)
         {
-            Int32 IDCLIENTE = Convert.ToInt32(mskIdCliente.Text);
+            string CLIENTE = cbClientes.Text;
             clsClientes EliminarCliente = new clsClientes();
-            EliminarCliente.Eliminar(IDCLIENTE);
+            EliminarCliente.Eliminar(CLIENTE);
             Limpiar();
         }
         private void cmdCancelar_Click(object sender, EventArgs e)
@@ -83,7 +80,6 @@ namespace pryVelezFunesEmpresa
             cmdBuscar.Enabled = true;
             cmdGuardar.Enabled = false;
             cmdCancelar.Visible = false;
-            mskIdCliente.ReadOnly = false;
         }
         private void cmdModificar_Click(object sender, EventArgs e)
         {
@@ -93,8 +89,6 @@ namespace pryVelezFunesEmpresa
             cmdBuscar.Enabled = false;
             cmdGuardar.Enabled = true;
             cmdCancelar.Visible = true;
-            //Desabilito mskIdCliente
-            mskIdCliente.ReadOnly = true;
             //Habilito los txt, msk y lst
             txtNombreApellido.ReadOnly = false;
             txtDomicilio.ReadOnly = false;
@@ -102,28 +96,18 @@ namespace pryVelezFunesEmpresa
         }
         private void cmdGuardar_Click(object sender, EventArgs e)
         {
-            int IDCLIENTE = Convert.ToInt32(mskIdCliente.Text);
+            string CLIENTE = cbClientes.Text;
             clsClientes ModificarCliente = new clsClientes();
+            ModificarCliente.BuscarPorNomCliente(CLIENTE);
             ModificarCliente.Nom_Apellido = txtNombreApellido.Text;
             ModificarCliente.DomicilioCliente = txtDomicilio.Text;
             ModificarCliente.TelefonoCliente = Convert.ToInt32(mskTelefono.Text);
-            ModificarCliente.Modificar(IDCLIENTE);
+            ModificarCliente.Modificar(CLIENTE);
             Limpiar();
-        }
-        private void mskIdCliente_TextChanged(object sender, EventArgs e)
-        {
-            if (mskIdCliente.Text != "")
-            {
-                cmdBuscar.Enabled = true;
-            }
-            else
-            {
-                cmdBuscar.Enabled = false;
-            }
         }
         private void Chequeo()
         {
-            if (mskIdCliente.Text != "" & txtNombreApellido.Text != "" & txtDomicilio.Text != "" & mskTelefono.Text != "")
+            if (cbClientes.SelectedIndex != -1 & txtNombreApellido.Text != "" & txtDomicilio.Text != "" & mskTelefono.Text != "")
             {
                 cmdBuscar.Enabled = true;
             }
@@ -167,6 +151,18 @@ namespace pryVelezFunesEmpresa
         {
             clsClientes ExportarClientes = new clsClientes();
             ExportarClientes.ExportarClientes();
+        }
+
+        private void cbClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbClientes.SelectedIndex != -1)
+            {
+                cmdBuscar.Enabled = true;
+            }
+            else
+            {
+                cmdBuscar.Enabled = false;
+            }
         }
     }
 }
