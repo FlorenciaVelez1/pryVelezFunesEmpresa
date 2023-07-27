@@ -55,7 +55,7 @@
             // cmdLimpiar
             // 
             this.cmdLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdLimpiar.Location = new System.Drawing.Point(361, 265);
+            this.cmdLimpiar.Location = new System.Drawing.Point(377, 265);
             this.cmdLimpiar.Name = "cmdLimpiar";
             this.cmdLimpiar.Size = new System.Drawing.Size(123, 39);
             this.cmdLimpiar.TabIndex = 9;
@@ -66,7 +66,7 @@
             // cmdSalir
             // 
             this.cmdSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdSalir.Location = new System.Drawing.Point(12, 274);
+            this.cmdSalir.Location = new System.Drawing.Point(12, 265);
             this.cmdSalir.Name = "cmdSalir";
             this.cmdSalir.Size = new System.Drawing.Size(123, 39);
             this.cmdSalir.TabIndex = 10;
@@ -78,7 +78,7 @@
             // 
             this.cmdAgregar.Enabled = false;
             this.cmdAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdAgregar.Location = new System.Drawing.Point(733, 265);
+            this.cmdAgregar.Location = new System.Drawing.Point(732, 265);
             this.cmdAgregar.Name = "cmdAgregar";
             this.cmdAgregar.Size = new System.Drawing.Size(123, 39);
             this.cmdAgregar.TabIndex = 8;

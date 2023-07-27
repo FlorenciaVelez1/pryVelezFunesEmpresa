@@ -38,13 +38,15 @@ namespace pryVelezFunesEmpresa
             string NomVendedor = cbVendedor.Text;
             DateTime FechaDesde = dtpFechaDesde.Value.Date;
             DateTime FechaHasta = dtpFechaHasta.Value.Date;
+            FechaDesde.ToShortDateString();
+            FechaHasta.ToShortDateString();
             if (bvVendedor.Checked == true)
             {
                 objVentas.ListarGrillaPorVend(GrillaVentas, NomVendedor, FechaDesde, FechaHasta);
             }
             else 
             {
-                objVentas.ListarGrillaPorFecha(GrillaVentas, FechaDesde, FechaHasta);
+                objVentas.ListarGrillaPorFecha(GrillaVentas, FechaDesde, FechaHasta,Grafico);
             }
         }
         private void dtpFechaHasta_ValueChanged(object sender, EventArgs e)

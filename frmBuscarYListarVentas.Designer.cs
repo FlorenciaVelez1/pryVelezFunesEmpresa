@@ -28,16 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mrcListadoVentas = new System.Windows.Forms.GroupBox();
             this.GrillaVentas = new System.Windows.Forms.DataGridView();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmdConsultar = new System.Windows.Forms.Button();
             this.cmdSalir = new System.Windows.Forms.Button();
             this.cbVendedor = new System.Windows.Forms.ComboBox();
@@ -47,8 +42,10 @@
             this.dtpFechaHasta = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaDesde = new System.Windows.Forms.DateTimePicker();
             this.bvVendedor = new System.Windows.Forms.CheckBox();
+            this.Grafico = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mrcListadoVentas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaVentas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grafico)).BeginInit();
             this.SuspendLayout();
             // 
             // mrcListadoVentas
@@ -67,88 +64,15 @@
             // 
             // GrillaVentas
             // 
+            this.GrillaVentas.AllowUserToOrderColumns = true;
             this.GrillaVentas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GrillaVentas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column8,
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column6,
-            this.Column4,
-            this.Column5,
-            this.Column7});
             this.GrillaVentas.Location = new System.Drawing.Point(17, 26);
             this.GrillaVentas.Name = "GrillaVentas";
-            this.GrillaVentas.ReadOnly = true;
             this.GrillaVentas.RowHeadersVisible = false;
             this.GrillaVentas.RowHeadersWidth = 51;
             this.GrillaVentas.RowTemplate.Height = 24;
             this.GrillaVentas.Size = new System.Drawing.Size(916, 410);
             this.GrillaVentas.TabIndex = 107;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Cliente";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 125;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Producto";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Tipo de Producto";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Cantidad";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 125;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Forma de Pago";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Importe Total";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 125;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Fecha";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 125;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Vendedor";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 125;
             // 
             // cmdConsultar
             // 
@@ -226,6 +150,7 @@
             this.dtpFechaDesde.Name = "dtpFechaDesde";
             this.dtpFechaDesde.Size = new System.Drawing.Size(200, 22);
             this.dtpFechaDesde.TabIndex = 125;
+            this.dtpFechaDesde.Value = new System.DateTime(2023, 7, 8, 0, 17, 58, 0);
             // 
             // bvVendedor
             // 
@@ -236,11 +161,29 @@
             this.bvVendedor.TabIndex = 127;
             this.bvVendedor.UseVisualStyleBackColor = true;
             // 
+            // Grafico
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.Grafico.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.Grafico.Legends.Add(legend1);
+            this.Grafico.Location = new System.Drawing.Point(964, 71);
+            this.Grafico.Name = "Grafico";
+            this.Grafico.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.Grafico.Series.Add(series1);
+            this.Grafico.Size = new System.Drawing.Size(388, 436);
+            this.Grafico.TabIndex = 128;
+            this.Grafico.Text = "chart1";
+            // 
             // frmBuscarYListarVentas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 572);
+            this.ClientSize = new System.Drawing.Size(1364, 572);
+            this.Controls.Add(this.Grafico);
             this.Controls.Add(this.bvVendedor);
             this.Controls.Add(this.dtpFechaDesde);
             this.Controls.Add(this.dtpFechaHasta);
@@ -255,6 +198,7 @@
             this.Load += new System.EventHandler(this.frmBuscarYListarVentas_Load);
             this.mrcListadoVentas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GrillaVentas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grafico)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,14 +215,7 @@
         private System.Windows.Forms.Label lblFechaHasta;
         private System.Windows.Forms.DateTimePicker dtpFechaHasta;
         private System.Windows.Forms.DateTimePicker dtpFechaDesde;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.CheckBox bvVendedor;
+        private System.Windows.Forms.DataVisualization.Charting.Chart Grafico;
     }
 }

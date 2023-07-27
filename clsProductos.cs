@@ -86,7 +86,7 @@ namespace pryVelezFunesEmpresa
             Conexion.Open();
             Comando.Connection = Conexion;
             Comando.CommandType = CommandType.TableDirect;
-            Comando.CommandText = "Tipo de Producto";
+            Comando.CommandText = "Tipo_de_Producto";
             //Adaptador se conecta con la base y trae los datos y se suben los datos a una tabla "virtual"(dataset)
             Adaptador = new OleDbDataAdapter(Comando);
             //Tabla virtual
@@ -94,7 +94,7 @@ namespace pryVelezFunesEmpresa
             Adaptador.Fill(DataConsulta);
             cbTipoProducto.DataSource = DataConsulta.Tables[0];
             //Los datos que queremos que se vean en la lst
-            cbTipoProducto.DisplayMember = "Tipo de Producto";
+            cbTipoProducto.DisplayMember = "Tipo_de_Producto";
             //Dato que no se veria
             cbTipoProducto.ValueMember = "Codigo";
             Conexion.Close();
@@ -104,7 +104,7 @@ namespace pryVelezFunesEmpresa
             try
             {
                 //Instruccion sql, creo variable con la intruccion concatenada y utilizo la variable luego
-                string Sql = "INSERT INTO Productos ([Id Producto],[Nombre], [Tipo de Producto], [Costo Minorista], [Costo Mayorista], [Descripcion])" +
+                string Sql = "INSERT INTO Productos ([Id_Producto],[Nombre], [Tipo_de_producto], [Costo_Minorista], [Costo_Mayorista], [Descripcion])" +
                     "VALUES ('" + IdProducto + "','" + NombreProducto + "','" + CodTipoProducto + "','" + CostoMinorista + "','" + CostoMayorista + "','" + Descripcion + "')";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
@@ -126,7 +126,7 @@ namespace pryVelezFunesEmpresa
             Conexion.Open();
             Comando.Connection = Conexion;
             Comando.CommandType = CommandType.TableDirect;
-            Comando.CommandText = "Tipo de Producto";
+            Comando.CommandText = "Tipo_de_Producto";
             //Recibe el contenido de la tabla
             OleDbDataReader Lector = Comando.ExecuteReader();
             //Si hay filas que leer entra en el "si"
@@ -213,7 +213,7 @@ namespace pryVelezFunesEmpresa
         {
             try
             {
-                string Sql = "DELETE FROM Productos WHERE (" + IDPRODUCTO + "= [Id Producto])";
+                string Sql = "DELETE FROM Productos WHERE (" + IDPRODUCTO + "= [Id_Producto])";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
                 Comando.Connection = Conexion;
@@ -233,8 +233,8 @@ namespace pryVelezFunesEmpresa
         {
             try
             {
-                string Sql = "UPDATE Productos SET [Nombre]= '" + NombreProducto + "', [Tipo de Producto]= " + CodTipoProducto + ", [Costo Minorista]= " + CostoMinorista + ", [Costo Mayorista]= " +
-                    CostoMayorista + ", [Descripcion]= '"+ Descripcion + "' WHERE [Id Producto] = " + IDPRODUCTO + "";
+                string Sql = "UPDATE Productos SET [Nombre]= '" + NombreProducto + "', [Tipo_de_producto]= " + CodTipoProducto + ", [Costo_Minorista]= " + CostoMinorista + ", [Costo_Mayorista]= " +
+                    CostoMayorista + ", [Descripcion]= '"+ Descripcion + "' WHERE [Id_Producto] = " + IDPRODUCTO + "";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
                 Comando.Connection = Conexion;

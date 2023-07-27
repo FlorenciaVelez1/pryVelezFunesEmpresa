@@ -47,7 +47,7 @@ namespace pryVelezFunesEmpresa
             Adaptador.Fill(DataConsulta);
             cbVendedores.DataSource = DataConsulta.Tables[0];
             //Los datos que queremos que se vean en la lst
-            cbVendedores.DisplayMember = "Nombre y Apellido";
+            cbVendedores.DisplayMember = "Nombre_Apellido";
             Conexion.Close();
         }
         public void BuscarVendedor(Int32 IdVendedor)

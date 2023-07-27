@@ -89,7 +89,7 @@ namespace pryVelezFunesEmpresa
             try
             {
                 //Instruccion sql, creo variable con la intruccion concatenada y utilizo la variable luego
-                string Sql = "INSERT INTO Ventas ([Id Producto],[Id Cliente], [Cantidad], [Forma de Pago], [Fecha Venta], [Total Pago], [Vendedor])" +
+                string Sql = "INSERT INTO Ventas ([Id_Producto],[Id_Cliente], [Cantidad], [Forma_de_Pago], [Fecha_Venta], [Total_Pago], [Vendedor])" +
                     "VALUES ('" + IdProducto + "','" + IdCliente + "','" + Cantidad + "','" + FormaPago + "','" + Fecha + "','" + TotalPago + "','" + IdVendedor + "')";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
@@ -144,36 +144,52 @@ namespace pryVelezFunesEmpresa
                 Conexion.Open();
                 Comando.Connection = Conexion;
                 Comando.CommandType = CommandType.TableDirect;
-                Comando.CommandText = Tabla;
-                GrillaVentas.Rows.Clear();
-                OleDbDataReader Lector = Comando.ExecuteReader();
-                if (Lector.HasRows)
+                Comando.CommandText = "SELECT Clientes.Nombre_Apellido, Ventas.Cantidad, Ventas.Forma_de_Pago, Ventas.Fecha_Venta, Ventas.Total_Pago, Productos.Nombre, Tipo_de_Producto.Tipo_de_Producto, Empleados.Nombre_Apellido AS Vendedor FROM((((Clientes INNER JOIN Ventas ON Clientes.Id_Cliente = Ventas.Id_Cliente) INNER JOIN Productos ON Ventas.Id_Producto = Productos.Id_Producto) INNER JOIN Tipo_de_Producto ON Productos.Tipo_de_producto = Tipo_de_Producto.Codigo) INNER JOIN Empleados ON Ventas.Vendedor = Empleados.Id_Empleado) WHERE (Ventas.Fecha_Venta >= #" + FechaDesde.ToString("dd/MMM/yyyy") +  "#) AND (Empleados.Nombre_Apellido = " + NOMBREVENDEDOR + ")";
+                Adaptador = new OleDbDataAdapter(Comando);
+                DataTable ventasPorNombre = new DataTable();
+                Adaptador.Fill(ventasPorNombre);
+                if (ventasPorNombre.Rows.Count > 0)
                 {
-                    while (Lector.Read())
+                    foreach (DataRow row in ventasPorNombre.Rows)
                     {
-                        if (Lector.GetInt32(7) == IdVendedor & Lector.GetDateTime(5) >= FechaDesde & Lector.GetDateTime(5) <= FechaHasta)
-                        {
-                            //llamo las cls para cambiar los numeros por los nombres correspondientes
-                            Int32 IDCLIENTE = Lector.GetInt32(1);
-                            Int32 IDPRODUCTO = Lector.GetInt32(2);
-                            clsClientes objCliente = new clsClientes();
-                            objCliente.BuscarPorIdCliente(IDCLIENTE);
-                            clsProductos objProducto = new clsProductos();
-                            objProducto.BuscarPorIdProducto(IDPRODUCTO);
-                            objProducto.BuscarTipoDeProducto(objProducto.CodTipoProducto);
-                            GrillaVentas.Rows.Add(objCliente.Nom_Apellido, objProducto.NombreProducto,objProducto.TipoProducto, Lector.GetInt32(3), Lector.GetString(4), Lector.GetInt32(6), Lector.GetDateTime(5).ToString("dd/MM/yyyy"), NOMBREVENDEDOR);
-
-                        }
+                        GrillaVentas.DataSource = ventasPorNombre;
                     }
                 }
                 Conexion.Close();
+                //Conexion.ConnectionString = Ruta;
+                //Conexion.Open();
+                //Comando.Connection = Conexion;
+                //Comando.CommandType = CommandType.TableDirect;
+                //Comando.CommandText = Tabla;
+                //GrillaVentas.Rows.Clear();
+                //OleDbDataReader Lector = Comando.ExecuteReader();
+                //if (Lector.HasRows)
+                //{
+                //    while (Lector.Read())
+                //    {
+                //        if (Lector.GetInt32(7) == IdVendedor & Lector.GetDateTime(5) >= FechaDesde & Lector.GetDateTime(5) <= FechaHasta)
+                //        {
+                //            //llamo las cls para cambiar los numeros por los nombres correspondientes
+                //            Int32 IDCLIENTE = Lector.GetInt32(1);
+                //            Int32 IDPRODUCTO = Lector.GetInt32(2);
+                //            clsClientes objCliente = new clsClientes();
+                //            objCliente.BuscarPorIdCliente(IDCLIENTE);
+                //            clsProductos objProducto = new clsProductos();
+                //            objProducto.BuscarPorIdProducto(IDPRODUCTO);
+                //            objProducto.BuscarTipoDeProducto(objProducto.CodTipoProducto);
+                //            GrillaVentas.Rows.Add(objCliente.Nom_Apellido, objProducto.NombreProducto, objProducto.TipoProducto, Lector.GetInt32(3), Lector.GetString(4), Lector.GetInt32(6), Lector.GetDateTime(5).ToString("dd/MMM/yyyy"), NOMBREVENDEDOR);
+
+                //        }
+                //    }
+                //}
+                //Conexion.Close();
             }
             catch (Exception)
             {
                 MessageBox.Show("No se ha podido cargar la informacion.");
             }
         }
-        public void ListarGrillaPorFecha(DataGridView GrillaVentas, DateTime FechaDesde, DateTime FechaHasta)
+        public void ListarGrillaPorFecha(DataGridView GrillaVentas, DateTime FechaDesde, DateTime FechaHasta, Chart Grafico)
         {
             try
             {
@@ -181,37 +197,51 @@ namespace pryVelezFunesEmpresa
                 Conexion.Open();
                 Comando.Connection = Conexion;
                 Comando.CommandType = CommandType.TableDirect;
-                Comando.CommandText = Tabla;
-                GrillaVentas.Rows.Clear();
-                OleDbDataReader Lector = Comando.ExecuteReader();
-                if (Lector.HasRows)
+                Comando.CommandText = "SELECT Clientes.Nombre_Apellido, Ventas.Cantidad, Ventas.Forma_de_Pago, Ventas.Fecha_Venta, Ventas.Total_Pago, Productos.Nombre, Tipo_de_Producto.Tipo_de_Producto, Empleados.Nombre_Apellido AS Vendedor FROM((((Clientes INNER JOIN Ventas ON Clientes.Id_Cliente = Ventas.Id_Cliente) INNER JOIN Productos ON Ventas.Id_Producto = Productos.Id_Producto) INNER JOIN Tipo_de_Producto ON Productos.Tipo_de_producto = Tipo_de_Producto.Codigo) INNER JOIN Empleados ON Ventas.Vendedor = Empleados.Id_Empleado) WHERE (Ventas.Fecha_Venta >= #" + FechaDesde.ToString("dd/MMM/yyyy") + "# AND Ventas.Fecha_Venta <=  #" + FechaHasta.ToString("dd/MMM/yyyy") +"#)";
+                Adaptador = new OleDbDataAdapter(Comando);
+                DataTable ventasPorFecha = new DataTable();
+                Adaptador.Fill(ventasPorFecha);
+                if (ventasPorFecha.Rows.Count > 0)
                 {
-                    while (Lector.Read())
+                    foreach (DataRow row in ventasPorFecha.Rows)
                     {
-                        if (Lector.GetDateTime(5) >= FechaDesde & Lector.GetDateTime(5) <= FechaHasta)
-                        {
-                            //llamo las cls para cambiar los numeros por los nombres correspondientes
-                            Int32 IDCLIENTE = Lector.GetInt32(1);
-                            Int32 IDPRODUCTO = Lector.GetInt32(2);
-                            Int32 IDVENDEDOR = Lector.GetInt32(7);
-                            clsClientes objCliente = new clsClientes();
-                            objCliente.BuscarPorIdCliente(IDCLIENTE);
-                            clsProductos objProducto = new clsProductos();
-                            objProducto.BuscarPorIdProducto(IDPRODUCTO);
-                            objProducto.BuscarTipoDeProducto(objProducto.CodTipoProducto);
-                            clsEmpleados objEmpleados = new clsEmpleados();
-                            objEmpleados.BuscarVendedor(IDVENDEDOR);
-                            GrillaVentas.Rows.Add(objCliente.Nom_Apellido, objProducto.NombreProducto, objProducto.TipoProducto, Lector.GetInt32(3), Lector.GetString(4), Lector.GetInt32(6), Lector.GetDateTime(5).ToString("dd/MM/yyyy"), objEmpleados.nomVendedor);
-                        }
+                        GrillaVentas.DataSource = ventasPorFecha;
                     }
                 }
                 Conexion.Close();
+                Conexion.ConnectionString = Ruta;
+                Conexion.Open();
+                Comando.Connection = Conexion;
+                Comando.CommandType = CommandType.TableDirect;
+                Comando.CommandText = "SELECT Fecha_Venta,Count(*) AS CantVentas FROM Ventas WHERE (Ventas.Fecha_Venta >= #" + FechaDesde.ToString("dd/MMM/yyyy") + "# AND Ventas.Fecha_Venta <=  #" + FechaHasta.ToString("dd/MMM/yyyy") + "#) GROUP BY Fecha_Venta";
+                Adaptador = new OleDbDataAdapter(Comando);
+                DataTable cantventasPorFecha = new DataTable();
+                Adaptador.Fill(cantventasPorFecha);
+                Series Gra = new Series();
+                Gra.ChartType = SeriesChartType.Column;
+                Grafico.Series.Clear();
+                if (cantventasPorFecha.Rows.Count > 0)
+                {
+                    foreach (DataRow row in cantventasPorFecha.Rows)
+                    {
+                        DateTime FechaVenta = (DateTime)row["Fecha_Venta"];
+                        int TotalVentas = (int)row["CantVentas"];
+                        Gra.Points.AddXY(FechaVenta.ToShortDateString(), TotalVentas);
+                    }
+                    Grafico.Series.Add(Gra);
+                    Grafico.ChartAreas[0].AxisY.Interval = 1;
+                    Grafico.Series[0].LegendText = "Cantidad de Ventas";
+                }
+                Conexion.Close();
+                cantventasPorFecha.Clear();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 MessageBox.Show("No se ha podido cargar la informacion.");
             }
         }
+
+
 
     }
 }

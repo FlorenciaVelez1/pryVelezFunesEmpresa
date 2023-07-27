@@ -118,7 +118,7 @@ namespace pryVelezFunesEmpresa
             try
             {
                 //Instruccion sql, creo variable con la intruccion concatenada y utilizo la variable luego
-                string Sql = "INSERT INTO Clientes ([Id Cliente],[Nombre y Apellido], [Domicilio], [Telefono])" +
+                string Sql = "INSERT INTO Clientes ([Id_Cliente],[Nombre_Apellido], [Domicilio], [Telefono])" +
                     "VALUES ('" + ClienteID + "','" + Nom_Apellido + "','" + DomicilioCliente + "','" + TelefonoCliente + "')";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
@@ -139,7 +139,7 @@ namespace pryVelezFunesEmpresa
             BuscarPorNomCliente(CLIENTE);
             try
             {
-                string Sql = "DELETE FROM Clientes WHERE (" + ClienteID  + "= [IdCliente])";
+                string Sql = "DELETE FROM Clientes WHERE (" + ClienteID  + "= [Id_Cliente])";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
                 Comando.Connection = Conexion;
@@ -159,8 +159,8 @@ namespace pryVelezFunesEmpresa
         {
             try
             {
-                string Sql = "UPDATE Clientes SET [Nombre y Apellido]= '" + Nom_Apellido + "', [Domicilio]= '" + DomicilioCliente + "', [Telefono]= " + TelefonoCliente +
-                    " WHERE [Id Cliente] = " + ClienteID + "";
+                string Sql = "UPDATE Clientes SET [Nombre_Apellido]= '" + Nom_Apellido + "', [Domicilio]= '" + DomicilioCliente + "', [Telefono]= " + TelefonoCliente +
+                    " WHERE [Id_Cliente] = " + ClienteID + "";
                 Conexion.ConnectionString = Ruta;
                 Conexion.Open();
                 Comando.Connection = Conexion;
@@ -213,7 +213,7 @@ namespace pryVelezFunesEmpresa
                 //Creo el archivo para exportar los datos
                 StreamWriter ExportarDatos = new StreamWriter("ExportarClientes.csv", false, Encoding.UTF8);
                 ExportarDatos.WriteLine("Listado de Clientes");
-                ExportarDatos.WriteLine("ID Cliente;Nombre y Apellido;Domicilio;Telefono");
+                ExportarDatos.WriteLine("Id Cliente;Nombre y Apellido;Domicilio;Telefono");
                 if (Lector.HasRows)
                 {
                     while (Lector.Read())
@@ -251,7 +251,7 @@ namespace pryVelezFunesEmpresa
             Adaptador.Fill(DataConsulta);
             cbNomClientes.DataSource = DataConsulta.Tables[0];
             //Los datos que queremos que se vean en la lst
-            cbNomClientes.DisplayMember = "Nombre y Apellido";
+            cbNomClientes.DisplayMember = "Nombre_Apellido";
             Conexion.Close();
         }
     }
